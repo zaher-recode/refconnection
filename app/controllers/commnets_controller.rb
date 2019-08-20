@@ -1,2 +1,0 @@
-class CommnetsController < ApplicationController
-end

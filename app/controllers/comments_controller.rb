@@ -1,5 +1,4 @@
-class ReviewsController < ApplicationController
-   
+class CommentsController < ApplicationController
     def new
     end
 
@@ -20,7 +19,7 @@ class ReviewsController < ApplicationController
     end
 
    private
-   def review_params
-    params.require(:review).permit(:title,  :text, :rating, :post_id, :user_id)
+   def comment_params
+    params.require(:comment).permit(:text, :post_id, :user_id)
    end  
 end
