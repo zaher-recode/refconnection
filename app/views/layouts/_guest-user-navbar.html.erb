@@ -12,15 +12,9 @@
           <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
         </div>
         <strong>
-        <li class="">
-            <%= link_to "Sign up", new_user_registration_path, :class => ''  %> 
-        </li>
-        <li class="">
-            <%= link_to "Login", new_user_session_path, :class => ''  %>
-        </li>
-        <li class="nav-box">
-            <%= link_to "Organizations", org_root_path, :class => ''  %>
-        </li>
+        <%= link_to "<li>Sign up</li>".html_safe, new_user_registration_path, :class => ''  %>
+        <%= link_to "<li>Login</li>".html_safe, new_user_session_path, :class => ''  %>
+        <%= link_to "<li class='nav-box'>Organizations</li>".html_safe, org_root_path, :class => ''  %>
         </strong>
     </div>
   </div>

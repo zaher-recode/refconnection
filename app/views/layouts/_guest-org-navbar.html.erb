@@ -6,15 +6,9 @@
     <%# LEFT SIDE %>
     <div class="row text-right"> 
         <strong>
-        <li class="nav-box">
-            <%= link_to "Users", root_path, :class => ''  %>
-        </li>
-        <li class="">
-            <%= link_to "Register", new_organization_registration_path, :class => ''  %> 
-        </li>
-        <li class="">
-            <%= link_to "Login", new_organization_session_path, :class => ''  %>
-        </li>
+            <%= link_to "<li class='nav-box'>Users</li>".html_safe, root_path%>
+            <%= link_to "<li>Register</li>".html_safe, new_organization_registration_path %> 
+            <%= link_to "<li>Login</li>".html_safe, new_organization_session_path %>
         </strong>
     </div>
   </div>

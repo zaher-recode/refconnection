@@ -9,7 +9,7 @@
 // Your CSS partials
 @import "pages/index";
 body {
-    color: #2a74b7;
+    color: #2873b6;
 }
 
 // NAVBAR
@@ -23,11 +23,8 @@ body {
 }
 
 .nav-box {
-    background-color: #09927b;
-}
-
-.nav-box a {
     color: white;
+    background-color: #09927b;
 }
 
 .navbar li {
@@ -40,12 +37,8 @@ body {
     transition-duration: 0.5s;
 }
 
-.navbar li a:hover {
-    color: #fff;
-    text-decoration: none;
-}
-
 .navbar li:hover {
+    color: white;
     background-color: #145791;
 }
 

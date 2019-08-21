@@ -1,6 +1,6 @@
-<li class="">
-  <%= link_to current_user.username, edit_user_registration_path(current_user), :class => '' %> 
-</li>
-<li class="">
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => ''  %>
-</li>
+<strong>
+  <%# USER_NAME EDIT PAGE %>
+  <%= link_to "<li>#{current_user.username}</li>".html_safe, edit_user_registration_path(current_user), :class => '' %>
+  <%# LOG-OUT %>
+  <%= link_to "<li>Logout</li>".html_safe, destroy_user_session_path, method: :delete, :class => ''  %>
+</strong> 
