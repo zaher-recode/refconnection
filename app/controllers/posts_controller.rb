@@ -12,6 +12,7 @@ class PostsController < ApplicationController
 
     def create
         @post =Post.create(post_params.merge(user_id: current_user.id))
+        @post.images = params[:post][:images]
         redirect_to action: "show", id: @post.id  
     end
 
@@ -28,8 +29,9 @@ class PostsController < ApplicationController
     end
 
     def update
+        byebug
         @post = Post.find(params[:id])
-        @post.images = params[:images]
+        @post.images = params[:post][:images]
         respond_to do |format|
             if @post.update(post_params)
                 format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -50,7 +52,6 @@ class PostsController < ApplicationController
 
    private
    def post_params
-    params.require(:post).permit(:title,  :description, :category_id,:images)
-
+    params.require(:post).permit(:title,  :description, :category_id)
    end  
 end
