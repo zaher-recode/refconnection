@@ -5,11 +5,14 @@ class PostsController < ApplicationController
         @mine = current_user.posts
     end
 
+
     def new
     end
 
     def create
-        @post =Post.create(title: params[:title], description: params[:description],catergroy_id: params[:catergroy_id], user_id: current_user.id, images: params[:images])
+        puts"###############################################"
+        p params
+        @post =Post.create(title: params[:title], description: params[:description],category_id: params[:category_id], user_id: current_user.id, images: params[:images])
         redirect_to action: "show", id: @post.id  
     end
 
@@ -29,7 +32,7 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         @post.title = params[:title]
         @post.description = params[:description]
-        @post.catergroy_id = params[:catergroy_id]
+        @post.category_id = params[:category_id]
         if params[:images]
         @post.images.attach(params[:images])
         end
@@ -46,9 +49,9 @@ class PostsController < ApplicationController
         end
     end
 
-   private
-   def post_params
-    params.require(:post).permit(:title,  :description, :catergroy_id)
+#    private
+#    def post_params
+#     params.require(:post).permit(:title,  :description, :category_id,:user_id,:images)
 
-   end  
+#    end  
 end
