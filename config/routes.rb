@@ -17,9 +17,9 @@ Rails.application.routes.draw do
   get '/organizations', to: 'homes#org', as: :org_root
   # resources :organizations
 
-  resources :post
-  resources :event
-  resources :job
+  resources :posts
+  resources :events
+  resources :jobs
 
   resources :collections do
     member do

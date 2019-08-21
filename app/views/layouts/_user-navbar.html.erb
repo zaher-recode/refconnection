@@ -1,5 +1,5 @@
 <li class="">
-  <%= link_to current_user.username.html_safes, edit_user_registration_path(current_user), :class => '' %> 
+  <%= link_to current_user.username, edit_user_registration_path(current_user), :class => '' %> 
 </li>
 <li class="">
   <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => ''  %>

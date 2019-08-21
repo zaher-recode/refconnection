@@ -14,26 +14,26 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "username" }%>
-    <%= f.input :dob,
-                required: true,
-                autofocus: true,
-                input_html: { autocomplete: "dob" }%>
+
+<%= f.label "Date of Birth", class: "text-dark"%>:
+    <br>
+    <%= f.date_select(:dob,:start_year => 1940, :end_year => Date.current.year - 13)
+  %><br><br>
+    
+   
     <%= f.input :phone,
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "phone" }%>
     <%= f.input :address,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "address" }%>
-    <h4>Will you be volunteering for good? </h4>
+    <h4 class="text-success">Will you be volunteering for good? </h4>
     <%= f.input :volunteer,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "volunteer" }%>
     <%= f.input :email,
                 required: true,
-                autofocus: true,
                 input_html: { autocomplete: "email" }%>
     <%= f.input :password,
                 required: true,
