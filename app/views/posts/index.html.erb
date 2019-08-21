@@ -1,26 +1,12 @@
-<h1 class="text-center header-primary">Posts</h1>
+<h1 class="text-center header-primary mt-5">Posts</h1>
 <% if @posts.empty? %>
-
     <p> There are not posts yet,</p>
 <%else%>
-    
-<% end %>
-
-<%# <% if @pets.length > 0 %> 
-    <%# <% my_pets = @mine.sample(@pets.length) %> 
-    <%# <% my_pets = @pets.sample(@pets.length) %> 
-
-    <%# <% elsif @pets.length > 2 %> 
-        <%# <% my_pets = @pets.sample(3) %> 
-       
-    <%# <% end %> 
-
-
-
-    <div id="cards">
+<div class='container'>
+<div id="cards">
         <% (@posts.length).times do |i| %>
             <div class="card">
-                <%= link_to(image_tag(url_for(@posts[i].images.first),class:"d-block w-20 card-img-topcarousel-img"),"posts/#{@posts[i].id}") %>
+                <%= link_to(image_tag(url_for(@posts[i].images.first),class:"carousel-img"),"posts/#{@posts[i].id}") %>
                 <div class="card-body">
                     <a href=<%="posts/#{@posts[i].id}"%>><h5 class="card-title text-center  py-3 text-white"><%=@posts[i].title%></h5></a>
                     <p class="card-text"><%=@posts[i].description%></p>
@@ -36,6 +22,21 @@
             </div>
         <% end %>
     </div>
+</div>
+<% end %>
+
+<%# <% if @pets.length > 0 %> 
+    <%# <% my_pets = @mine.sample(@pets.length) %> 
+    <%# <% my_pets = @pets.sample(@pets.length) %> 
+
+    <%# <% elsif @pets.length > 2 %> 
+        <%# <% my_pets = @pets.sample(3) %> 
+       
+    <%# <% end %> 
+
+
+
+    
 
 
 

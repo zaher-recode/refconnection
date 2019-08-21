@@ -12,11 +12,10 @@ class PostsController < ApplicationController
 
     def create
         @post =Post.create(post_params.merge(user_id: current_user.id))
-        @post.images = params[:post][:images]
+        # @post.images = params[:post][:images]
         redirect_to action: "show", id: @post.id  
     end
 
-   
     def show
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
@@ -30,7 +29,8 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        @post.images = params[:post][:images]
+        # @post.images.update(params[:post][:images])
+        @post.images.attach(params[:post][:images])
         respond_to do |format|
             if @post.update(post_params)
                 format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -51,6 +51,6 @@ class PostsController < ApplicationController
 
    private
    def post_params
-    params.require(:post).permit(:title,  :description, :category_id)
+    params.require(:post).permit(:title,  :description, :category_id, images:[])
    end  
 end
