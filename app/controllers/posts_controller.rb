@@ -29,16 +29,16 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        @post.title = params[:title]
-        @post.description = params[:description]
-        @post.category_id = params[:category_id]
-        if params[:images]
-        @post.images.attach(params[:images])
+        @post.images = params[:images]
+        respond_to do |format|
+            if @post.update(post_params)
+                format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+                format.json { render :show, status: :created, location: @post }
+            else
+                format.html { render :new }
+                format.json { render json: @post.errors, status: :unprocessable_entity }
+            end
         end
-        @post.save
-    
-        redirect_to action: "show", id: @post.id  
-    
     end
     def destroy
         @post = Post.find(params[:id])

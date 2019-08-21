@@ -2,7 +2,7 @@ class EventsController < ApplicationController
     before_action :authenticate_organization!, except: [:show]
     def index
         @events = Event.all
-        @mine = current_user.jobs
+        @mine = current_organization.events
     end
 
     def new
