@@ -29,7 +29,6 @@ class PostsController < ApplicationController
     end
 
     def update
-        byebug
         @post = Post.find(params[:id])
         @post.images = params[:post][:images]
         respond_to do |format|
