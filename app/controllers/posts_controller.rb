@@ -7,11 +7,10 @@ class PostsController < ApplicationController
 
 
     def new
+        @post = Post.new
     end
 
     def create
-        puts"###############################################"
-        p params
         @post =Post.create(title: params[:title], description: params[:description],category_id: params[:category_id], user_id: current_user.id, images: params[:images])
         redirect_to action: "show", id: @post.id  
     end
