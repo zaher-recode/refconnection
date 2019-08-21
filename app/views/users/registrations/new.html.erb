@@ -2,7 +2,7 @@
 <%= render 'layouts/guest-user-navbar'%>
 
 <%# SIGN-FORM %>
-<div class="container text-center">
+<div class="container text-center mt-5">
   <h4 class="main-color">Sign Up</h4>
   <div class="container text-left sign-form form-inputs">
 
@@ -15,12 +15,10 @@
                 autofocus: true,
                 input_html: { autocomplete: "username" }%>
 
-<%= f.label "Date of Birth", class: "text-dark"%>:
-    <br>
-    <%= f.date_select(:dob,:start_year => 1940, :end_year => Date.current.year - 13)
-  %><br><br>
-    
-   
+    <%= f.input :dob, as: :date, start_year: Date.today.year - 90,
+                              end_year: Date.today.year - 12,
+                              order: [:day, :month, :year] %>
+  
     <%= f.input :phone,
                 required: true,
                 autofocus: true,
@@ -28,10 +26,6 @@
     <%= f.input :address,
                 required: true,
                 input_html: { autocomplete: "address" }%>
-    <h4 class="text-success">Will you be volunteering for good? </h4>
-    <%= f.input :volunteer,
-                required: true,
-                input_html: { autocomplete: "volunteer" }%>
     <%= f.input :email,
                 required: true,
                 input_html: { autocomplete: "email" }%>
@@ -42,6 +36,10 @@
     <%= f.input :password_confirmation,
                 required: true,
                 input_html: { autocomplete: "new-password" } %>
+    <h5>Will you be volunteering for good? </h5>
+    <%= f.input :volunteer,
+                required: true,
+                input_html: { autocomplete: "volunteer" }%>
   </div>
 
   <div class="form-actions text-center">
