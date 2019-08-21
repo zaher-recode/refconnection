@@ -1,0 +1,30 @@
+ <div class="col-8 text-left  d-flex flex-column justify-content-between">
+    <% if @event%>
+     
+        <% if @event.image.attached?%>
+        image
+        <%= image_tag @event.image, style: "width:100%;"%>  
+        <% end %>              
+        <br>
+    title
+        <%= @event.title %>
+        <br>
+
+        description
+        <%= @event.description %>
+        <br>
+
+        address
+        <%= @event.address %>
+        <br>
+
+        start_date
+        <%= @event.start_date %>
+        <br>
+
+        end_dates
+        <%= @event.end_date %>
+    <% else %>
+        <p> There's no such event.</p>
+    <% end %>
+</div>

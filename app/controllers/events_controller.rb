@@ -1,16 +1,26 @@
 class EventsController < ApplicationController
-    before_action :authenticate_user!, except: [:show]
+    before_action :authenticate_organization!, except: [:show]
     def index
         @events = Event.all
         @mine = current_user.jobs
     end
 
     def new
+        @event = Event.new
     end
 
     def create
-        @event =Event.create(title: params[:title], description: params[:description], organization_id: current_user.id, address: params[:address], start_date: params[:start_date],end_date: params[:end_date], images: params[:images])
-        redirect_to action: "show", id: @event.id  
+        @event =Event.create(event_params.merge(organization_id: current_organization.id))
+        @event.image = params[:image]
+        respond_to do |format|
+            if @event.save
+                format.html { redirect_to @event, notice: 'Event was successfully created.' }
+                format.json { render :show, status: :created, location: @event }
+            else
+                format.html { render :new }
+                format.json { render json: @event.errors, status: :unprocessable_entity }
+            end
+        end
     end
 
    
@@ -20,24 +30,22 @@ class EventsController < ApplicationController
 
     def edit
         @event = Event.find(params[:id])
-        verify_user
     end
 
     def update
         @event = Event.find(params[:id])
-        @event.title = params[:title]
-        @event.description = params[:description]
-        @event.start_date = params[:start_date]
-        @event.address = params[:address]
-        @event.end_date = params[:end_date]
-        if params[:images]
-            @event.images.attach(params[:images])
+        @event.image = params[:image]
+        respond_to do |format|
+            if @event.update(event_params)
+                format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+                format.json { render :show, status: :created, location: @event }
+            else
+                format.html { render :new }
+                format.json { render json: @event.errors, status: :unprocessable_entity }
             end
-        @event.save
-    
-        redirect_to action: "show", id: @event.id  
-    
+        end
     end
+
     def destroy
         @event = Event.find(params[:id])
         unless verify_user
@@ -48,6 +56,6 @@ class EventsController < ApplicationController
 
    private
    def event_params
-    params.require(:event).permit(:title,  :description, :start_date, :end_date, :address)
+    params.require(:event).permit(:title,  :description, :start_date, :end_date, :address, :image)
    end  
 end
