@@ -6,6 +6,44 @@
     
 <% end %>
 
+<%# <% if @pets.length > 0 %> 
+    <%# <% my_pets = @mine.sample(@pets.length) %> 
+    <%# <% my_pets = @pets.sample(@pets.length) %> 
+
+    <%# <% elsif @pets.length > 2 %> 
+        <%# <% my_pets = @pets.sample(3) %> 
+       
+    <%# <% end %> 
+
+
+
+    <div id="cards">
+        <% (@posts.length).times do |i| %>
+            <div class="card">
+                <%= link_to(image_tag(url_for(@posts[i].images.first),class:"d-block w-20 card-img-topcarousel-img"),"posts/#{@posts[i].id}") %>
+                <div class="card-body">
+                    <a href=<%="posts/#{@posts[i].id}"%>><h5 class="card-title text-center  py-3 text-white"><%=@posts[i].title%></h5></a>
+                    <p class="card-text"><%=@posts[i].description%></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Rating :  <%= @posts[i].show_rating %></li>
+                    <li class="list-group-item">By :  <%= @posts[i].user.username %></li>
+                    
+                </ul>
+                <div class="card-footer">
+                    <small class="text-white">Last updated:  <%= time_ago_in_words(@posts[i].updated_at) %></small>
+                </div>
+            </div>
+        <% end %>
+    </div>
+
+
+
+<%# <div class="list-my-pets text-center"> %>
+    <%# <%= form_tag("/search", method: "get") do %> 
+        <%# <%= render @pets %> 
+    <%# <% end %> 
+<%# </div> %>
 
    
 

@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     end
 
     def create
-        @post =Post.create(title: params[:title], description: params[:description],category_id: params[:category_id], user_id: current_user.id, images: params[:images])
+        @post =Post.create(post_params.merge(user_id: current_user.id))
         redirect_to action: "show", id: @post.id  
     end
 
@@ -48,9 +48,9 @@ class PostsController < ApplicationController
         end
     end
 
-#    private
-#    def post_params
-#     params.require(:post).permit(:title,  :description, :category_id,:user_id,:images)
+   private
+   def post_params
+    params.require(:post).permit(:title,  :description, :category_id,:images)
 
-#    end  
+   end  
 end

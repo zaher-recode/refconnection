@@ -16,7 +16,7 @@ Rating:
 <h3>
    <%=@post.title%>
 
-</h2>
+</h3>
 
 
 <% unless @post.images.empty? %>
@@ -35,7 +35,7 @@ Rating:
                         <%="active" if i == 0%>
                     ">
        
-                        <%= image_tag(url_for(@post.images[i]), class:"d-block w-100 h-100 carousel") %>
+                        <%= image_tag(url_for(@post.images[i]),class:'carousel-img')%>
                 
                     </div>
                 <% end%>
@@ -52,6 +52,11 @@ Rating:
     </div>
 <% end %>
 
+
+<h3>
+    <%=@post.category.name%>
+ 
+ </h3>
 
 <p>
     <%=@post.description%>
