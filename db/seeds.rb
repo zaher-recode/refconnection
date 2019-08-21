@@ -3,5 +3,13 @@
 #
 # Examples:
 #
+
+# Seed the Categories
+Category.create([
+    {name: "Maintenance Services"},
+    {name: "Teaching Services"},
+    {name: "Freelance Services"}
+    ])
+    
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)

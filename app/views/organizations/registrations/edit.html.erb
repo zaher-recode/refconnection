@@ -16,7 +16,30 @@
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
-
+    <%= f.input :contact_person_name,
+                hint: "Who is your new contact person?",
+                required: false,
+                input_html: { autocomplete: "contact_person_name" } %>
+    <%= f.input :company_name,
+                hint: "What is your new company name?",
+                required: false,
+                input_html: { autocomplete: "company_name" } %>
+    <%= f.input :organizer,
+                hint: "Have you quitted organizing",
+                required: false,
+                input_html: { autocomplete: "organizer" } %>
+    <%= f.input :address,
+                hint: "What is your new address?",
+                required: false,
+                input_html: { autocomplete: "address" } %>
+    <%= f.input :phone,
+                hint: "What is your new contact number",
+                required: false,
+                input_html: { autocomplete: "phone" } %>
+    <%= f.input :email,
+                hint: "What is your new email address",
+                required: false,
+                input_html: { autocomplete: "email" } %>
     <%= f.input :password,
                 hint: "leave it blank if you don't want to change it",
                 required: false,

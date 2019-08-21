@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_20_035906) do
+ActiveRecord::Schema.define(version: 2019_08_21_022023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,11 +59,11 @@ ActiveRecord::Schema.define(version: 2019_08_20_035906) do
   end
 
   create_table "organizations", force: :cascade do |t|
-    t.string "name"
+    t.string "company_name"
     t.string "address"
     t.string "phone"
-    t.boolean "company"
-    t.boolean "organizer"
+    t.boolean "company", default: true
+    t.boolean "organizer", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_08_20_035906) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "contact_person_name"
     t.index ["email"], name: "index_organizations_on_email", unique: true
     t.index ["reset_password_token"], name: "index_organizations_on_reset_password_token", unique: true
   end
