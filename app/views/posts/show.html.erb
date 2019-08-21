@@ -9,47 +9,33 @@ Rating:
 </h1> 
 
 <div class="show-info">
+
+
+
+
 <h3>
-   Type: <%=@pet.animal_type%>
+   <%=@post.title%>
 
-</h3>
-<h3>
-    Breed: <%=@pet.breed%>
-
-</h3>
-<h3>
-    Gender: <%=@pet.gender%>
-
-</h3>
-<h3>
-   Color: <%=@pet.color%>
-
-</h3>
-<h4>
-   Description: <%=@pet.description%>
-
-</h4>
-
-<br>
+</h2>
 
 
-<% unless @pet.images.empty? %>
+<% unless @post.images.empty? %>
 
     <div class="home-slide">
         <div id="carouselExampleCaptions" class="carousel slide smaller-carousel" data-ride="carousel">
             <ol class="carousel-indicators">
-                <% (@pet.images.length).times do |i| %>
+                <% (@post.images.length).times do |i| %>
                 <li data-target="#carouselExampleCaptions" data-slide-to="i" class= "<%="active" if i == 0%>"></li>
                 <% end %>
             </ol>
             <div class="carousel-inner">
     
-                <% (@pet.images.length).times do |i| %>
+                <% (@post.images.length).times do |i| %>
                     <div class="carousel-item
                         <%="active" if i == 0%>
                     ">
        
-                        <%= image_tag(url_for(@pet.images[i]), class:"d-block w-100 carousel") %>
+                        <%= image_tag(url_for(@post.images[i]), class:"d-block w-100 h-100 carousel") %>
                 
                     </div>
                 <% end%>
@@ -66,23 +52,38 @@ Rating:
     </div>
 <% end %>
 
+
+<p>
+    <%=@post.description%>
+
+</p>
+<h3>
+    By: <%=@post.user.username%>
+
+</h3>
+<h3>
+    <small class="text-dark">Last updated:  <%= time_ago_in_words(@post.updated_at) %></small>
+
+</h3>
+
+<br>
+
+
 </div>
 
 
 
-<% if current_user && current_user.id == @pet.owner_id%>
+<% if current_user && current_user.id == @post.user_id%>
+
+
 
 <h4>
-    <%= link_to :"List #{@pet.name}", {:controller => "transactions", :action => "new", :pet_id => @pet.id }, class: "btn btn-success my-4" %>
-</h4>
-
-<h4>
-    <%= link_to :"Edit Informations", "/pets/#{params[:id]}/edit", class: "btn btn-warning my-4" %>
+    <%= link_to :"Edit Informations", "/posts/#{params[:id]}/edit", class: "btn btn-warning my-4" %>
 </h4>
 
 
 <h3>
-<%= link_to :"delete", "/pets/#{params[:id]}", method: "delete", class: "btn btn-danger"%>
+<%= link_to :"delete", "/posts/#{params[:id]}", method: "delete", class: "btn btn-danger"%>
 </h3>
 
 <br>
@@ -90,7 +91,7 @@ Rating:
 <%end%>
 <%= link_to :"Back to home", "/" %>
 
-
+<!-- 
 <h2 class="header-ternary"> Comments </h1> 
 <div id="comments">
 
@@ -104,15 +105,15 @@ Rating:
        
        
 
-       <%= form_with url: "/pets/add_comment", method: "post", id: "form" do |f| %>
+       <%= form_with url: "/posts/add_comment", method: "post", id: "form" do |f| %>
   <%= f.text_field :title, required: true, placeholder: "Title" %><br><br>
   <%= f.text_area :text, required: true,placeholder: "Comment"  %><br><br>
                 <%= f.hidden_field :user_id,
                 required: false,
                 autocomplete: "your-id", value: current_user.id %>
-                <%= f.hidden_field :pet_id,
+                <%= f.hidden_field :post_id,
                 required: false,
-                autocomplete: "your-pet", value: @pet.id %>
+                autocomplete: "your-post", value: @post.id %>
 <br>
   <%= f.submit " Add Comment ", class:" btn btn-outline-warning btn-lg" %>
   <%end%>
@@ -127,6 +128,7 @@ Rating:
   </div>
 
 <%end%>
+
 
 
 
@@ -163,3 +165,4 @@ Rating:
 </div>
 
 
+-->
