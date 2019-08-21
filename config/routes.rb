@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   resources :event
   resources :job
 
-
+  resources :collections do
+    member do
+      delete :delete_image_attachment
+    end
+  end
 
 end
