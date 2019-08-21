@@ -1,0 +1,27 @@
+<!-- Navigation -->
+<% if !user_signed_in? && !organization_signed_in? %>
+  <div class="navbar">
+    <%# HEARDER OR LOGO %>
+    <%= render 'layouts/navbar-header'%>
+    <%# LEFT SIDE %>
+    
+    <div class="row text-left"> 
+        
+       <div class="searchbar">
+          <input class="search_input" type="text" name="" placeholder="Search...">
+          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+        <strong>
+        <li class="">
+            <%= link_to "Sign up", new_user_registration_path, :class => ''  %> 
+        </li>
+        <li class="">
+            <%= link_to "Login", new_user_session_path, :class => ''  %>
+        </li>
+        <li class="nav-box">
+            <%= link_to "Organizations", org_root_path, :class => ''  %>
+        </li>
+        </strong>
+    </div>
+  </div>
+<% end %>

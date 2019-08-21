@@ -101,7 +101,6 @@ ActiveRecord::Schema.define(version: 2019_08_20_035906) do
     t.string "phone"
     t.string "address"
     t.boolean "volunteer", default: false
-    t.boolean "refugee", default: false
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"

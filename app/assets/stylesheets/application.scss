@@ -2,12 +2,137 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
-
 // External libraries
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
-
 // Your CSS partials
 @import "pages/index";
+body {
+    color: #ffffff;
+}
 
+// NAVBAR
+.navbar {
+    background-color: white;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #2873b6;
+}
+
+.nav-box {
+    background-color: #09927b;
+}
+
+.nav-box a {
+    color: white;
+}
+
+.navbar li {
+    // margin: 0 10px;
+    display: block;
+    float: left;
+    padding: 12px 19px;
+    position: relative;
+    text-decoration: none;
+    transition-duration: 0.5s;
+}
+
+.navbar li a:hover {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar li:hover {
+    background-color: #145791;
+}
+
+.main-box {
+    background-color: #2873b6;
+}
+
+.main-box a {
+    color: white;
+}
+
+// COLORS
+.main-color {
+    color: #2873b6;
+}
+
+.sec-color {
+    color: #2874b6d3;
+}
+
+// SEARCHBAR
+.searchbar {
+    /* margin-top: 2%; */
+    /* height: 24px; */
+    // background-color: #f1f1f1d3;
+    border-radius: -3px;
+    // padding: 4px 0px;
+}
+
+.search_input {
+    color: white;
+    border: 0;
+    outline: 0;
+    background: none;
+    width: 0;
+    line-height: 40px;
+    transition: width 0.4s linear;
+}
+
+.searchbar:hover>.search_input {
+    padding: 0 10px;
+    width: 450px;
+    height: 48px;
+    transition: width 0.4s linear;
+    background-color: #d4d4d48e;
+}
+
+.searchbar:hover>.search_icon {
+    // background: white;
+    color: #ececec;
+    background-color: #2873b6;
+}
+
+.search_icon {
+    height: 48px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    // border-radius: 50%;
+    color: #2873b6;
+}
+
+// SIGN-FORM
+.sign-form {
+    width: 400px;
+}
+
+.form-control-label,
+.form-check-label {
+    color: #6b6a69;
+}
+
+// BUTTON
+input.btn,
+{
+    margin: auto;
+    text-align: center;
+    background-color: #2873b6;
+}
+
+.form-actions input {
+    color: white;
+}
+
+.btn-block {
+    color: white;
+    background-color: #2873b6;
+}

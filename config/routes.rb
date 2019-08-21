@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-  # get '/organizations/sign_up' => 'organizations/registrations'
 
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -15,6 +14,9 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   root to: "homes#index"
+  get '/organizations', to: 'homes#org', as: :org_root
+  # resources :organizations
+
   resources :post
   resources :event
   resources :job
