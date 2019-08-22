@@ -2,27 +2,37 @@
 <% if @posts.empty? %>
     <p> There are not posts yet,</p>
 <%else%>
-<div class='container'>
-<div id="cards">
-        <% (@posts.length).times do |i| %>
-            <div class="card">
-                <%= link_to(image_tag(url_for(@posts[i].images.first),class:"carousel-img"),"/posts/#{@posts[i].id}") %>
-                <div class="card-body">
-                    <a href=<%="/posts/#{@posts[i].id}"%>><h5 class="card-title text-center  py-3 text-dark"><%=@posts[i].title%></h5></a>
-                    <p class="card-text text-center"><%=@posts[i].description%></p>
+<div class='container col-md-9'>
+            <div id="cards">
+                    <% (@posts.length).times do |i| %>
+                        <!-- Card Wider -->
+                            <div class="card card-cascade wider">
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                                <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
+                                <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-left">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
+                                <!-- Text -->
+                                <p class="card-text g-color"><%=@posts[i].description%></p>
+                                <br>
+                                <small class="blue-text pb-2"><strong>by : <%= link_to @posts[i].user.username, user_path(@posts[i].user)%> </strong></small>
+                            </div>
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                                <small class="g-color">Last updated:  <%= time_ago_in_words(@posts[i].updated_at) %></small>
+                            </div>
+                            </div>
+                            <!-- Card Wider -->
+                    <% end %>
+                            
+                        </div>
                 </div>
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item text-center">Rating :  <%= @posts[i].show_rating %></li>
-                    <li class="list-group-item">By: <%= @posts[i].user.username %></li>
-                    
-                </ul>
-                <div class="card-footer">
-                    <small class="text-dark">Last updated:  <%= time_ago_in_words(@posts[i].updated_at) %></small>
-                </div>
-            </div>
-        <% end %>
-    </div>
-</div>
 <% end %>
 
 <%# <% if @pets.length > 0 %> 
