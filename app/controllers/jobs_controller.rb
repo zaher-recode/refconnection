@@ -4,7 +4,9 @@ class JobsController < ApplicationController
 
     def index
         @jobs = Job.all
-        @mine = current_organization.jobs
+        # if current_user
+        #     @mine = current_organization.jobs  
+        # end
     end
 
     def new
