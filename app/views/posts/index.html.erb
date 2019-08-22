@@ -13,9 +13,6 @@
                                 <!-- Card image -->
                                 <div class="view view-cascade overlay">
                                     <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
-                                    <a href="#!">
-                                    <div class="mask rgba-white-slight"></div>
-                                    </a>
                                 </div>
                                 <!-- Card content -->
                                 <div class="card-body card-body-cascade text-left">
@@ -23,7 +20,7 @@
                                     <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
                                     <!-- Text -->
                                     <p class="card-text g-color"><%=@posts[i].description%></p>
-                                    </div>
+                                </div>
                                 
                             <!-- Card footer -->
                             <div class="card-footer text-muted">
