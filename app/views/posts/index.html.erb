@@ -2,30 +2,32 @@
 <% if @posts.empty? %>
     <p> There are not posts yet,</p>
 <%else%>
-<div class='container col-md-9'>
+<div class='container col-md-6'>
             <div id="cards">
                     <% (@posts.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
-                            <!-- Card image -->
-                            <div class="view view-cascade overlay">
-                                <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
-                                <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                                </a>
+                            <div class="text-muted">
+                                <strong><%= link_to @posts[i].user.username, user_path(@posts[i].user)%></strong>
                             </div>
-                            <!-- Card content -->
-                            <div class="card-body card-body-cascade text-left">
-                                <!-- Title -->
-                                <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
-                                <!-- Text -->
-                                <p class="card-text g-color"><%=@posts[i].description%></p>
-                                <br>
-                                <small class="blue-text pb-2"><strong>by : <%= link_to @posts[i].user.username, user_path(@posts[i].user)%> </strong></small>
-                            </div>
+                                <!-- Card image -->
+                                <div class="view view-cascade overlay">
+                                    <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
+                                    <a href="#!">
+                                    <div class="mask rgba-white-slight"></div>
+                                    </a>
+                                </div>
+                                <!-- Card content -->
+                                <div class="card-body card-body-cascade text-left">
+                                    <!-- Title -->
+                                    <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
+                                    <!-- Text -->
+                                    <p class="card-text g-color"><%=@posts[i].description%></p>
+                                    </div>
+                                
                             <!-- Card footer -->
-                            <div class="card-footer text-muted text-center">
-                                <small class="g-color">Last updated:  <%= time_ago_in_words(@posts[i].updated_at) %></small>
+                            <div class="card-footer text-muted">
+                                <small class="g-color">updated at: <%= time_ago_in_words(@posts[i].updated_at) %> ago</small>
                             </div>
                             </div>
                             <!-- Card Wider -->
@@ -34,28 +36,6 @@
                         </div>
                 </div>
 <% end %>
-
-<%# <% if @pets.length > 0 %> 
-    <%# <% my_pets = @mine.sample(@pets.length) %> 
-    <%# <% my_pets = @pets.sample(@pets.length) %> 
-
-    <%# <% elsif @pets.length > 2 %> 
-        <%# <% my_pets = @pets.sample(3) %> 
-       
-    <%# <% end %> 
-
-
-
-    
-
-
-
-<%# <div class="list-my-pets text-center"> %>
-    <%# <%= form_tag("/search", method: "get") do %> 
-        <%# <%= render @pets %> 
-    <%# <% end %> 
-<%# </div> %>
-
    
 
 <%= link_to "Add new post","/posts/new",class:"btn btn-warning mx-4 my-4 btn-lg"  %>

@@ -27,13 +27,16 @@
     <%= render 'layouts/navbar-header'%>
     <%# LEFT SIDE %>
     <div> 
+    <strong>
       <ul class="text-right">
+        <%= render 'layouts/add-navbar'%>
       <% if user_signed_in? %>
       <% @user = current_user %>
         <%= render 'layouts/user-navbar' %>
       <% elsif organization_signed_in? %>
         <%= render 'layouts/org-navbar' %>
       <% end %>
+      </strong>
       </ul>
     </div>
   </div>

@@ -15,7 +15,10 @@ body {
 
 .card {
     margin: 2% 0;
-    // border-radius: 2rem;
+    padding: 2rem;
+    -webkit-border-radius: 2rem;
+-moz-border-radius: 2rem;
+border-radius: 2rem;
   }
 
 // NAVBAR
@@ -239,4 +242,23 @@ input.btn,
     border-left: 2px solid #5b9bd1;
     margin-left: -2px;
   }
-  
+
+a:hover {
+  text-decoration: none;
+}
+
+img {    
+  width: 100%;
+  -webkit-border-top-left-radius: 2rem;
+-webkit-border-top-right-radius: 2rem;
+-webkit-border-bottom-right-radius: 2rem;
+-webkit-border-bottom-left-radius: 2rem;
+-moz-border-radius-topleft: 2rem;
+-moz-border-radius-topright: 2rem;
+-moz-border-radius-bottomright: 2rem;
+-moz-border-radius-bottomleft: 2rem;
+border-top-left-radius: 2rem;
+border-top-right-radius: 2rem;
+border-bottom-right-radius: 2rem;
+border-bottom-left-radius: 2rem;
+}

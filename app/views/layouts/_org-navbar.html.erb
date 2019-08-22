@@ -1,5 +1,5 @@
 <li class="">
-    <%= link_to current_organization.email, edit_organization_registration_path, :class => '' %> 
+    <%= link_to current_organization.company_name, organization_path(current_organization), :class => '' %> 
 </li>
 <li class="">
     <%= link_to "Logout", destroy_organization_session_path, method: :delete, :class => ''  %>
