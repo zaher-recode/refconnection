@@ -35,15 +35,7 @@ class JobsController < ApplicationController
     end
 
     def update
-        # @job = Job.find(params[:id])
-        # @job.title = params[:title]
-        # @job.description = params[:description]
-        # @job.position = params[:position]
-        # @job.address = params[:address]
-        # @job.salary = params[:salary]
-        # @job.save
-    
-        # redirect_to action: "show", id: @job.id
+   
         @job = Job.find(params[:id]) 
         if @job.update_attributes(job_params) 
           redirect_to(:action => 'show', :id => @job.id) 
