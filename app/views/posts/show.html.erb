@@ -92,8 +92,36 @@ Rating:
 <br>
 <br>
 <%end%>
-<%= link_to :"Back to home", "/" %>
 
+
+<%= simple_form_for @comment, remote: true, :url => "/comments", :method => :post do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<h4> Add a New Comment </h4>
+  <div class="form-inputs">
+    <%= f.input :text, required: true %>
+    <%# <%= f.hidden_field :post_id,  "#{@post.id}"%>
+    <%=f.hidden_field :post_id, :value => "#{@post.id}"%>
+
+    <%# <p class='fg-color'>Add images:</p>
+    <%= f.file_field :images %> 
+  </div>
+  <br>
+  <div class="form-actions text-center">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+
+<%@post.comments.count%>
+<%@comments.each do |comment|%>
+    <%= comment.text %>
+<%= link_to :"Edit", "/comments/#{comment.id}/edit" %>
+<%= link_to :"Delete", "/comments/#{comment.id}", method: :delete %>
+
+<% end %>
+
+<%= link_to :"Back to home", "/" %>
 
 <h2 class="header-ternary"> Reviews </h1> 
 <div id="reviews">
@@ -170,11 +198,9 @@ Rating:
     </div>
 </div>
 
-
 <%end%>
 <%end%>
 </div>
 
-</div>
 
 

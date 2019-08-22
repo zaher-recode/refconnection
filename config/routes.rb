@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :events
   resources :jobs
+  resources :comments
 
   resources :comments
 
