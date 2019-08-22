@@ -23,9 +23,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # PUT /resource
-  # def update
-  #   super
-  # end
+  def update
+    super
+    @user.image = params[:user][:image]
+    @user.save
+  end
 
   # DELETE /resource
   # def destroy
