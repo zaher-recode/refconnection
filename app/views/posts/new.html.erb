@@ -1,37 +1,12 @@
-<%= render 'layouts/guest-user-navbar'%>
+<%# NEW EVENT-FORM %>
+<div class="container text-center mt-5">
+  <h4 class="main-color">Create new post</h4>
+    <div class="container text-left sign-form">
 
+    <%= render 'form', post: @post %>
 
-<div class="container text-center">
-  <h4 class="main-color">Add New Post</h4>
- 
-  <div class="form-inputs ">
-
-
-<%= form_with url: "/posts",   method: "post", id: "form" do |f| %>
-  <%= f.label "Post Title" %>:
-  <br>
-  <%= f.text_field :title %><br><br>
-<%= f.label "Post Description" %>:
-  <br>
-  <%= f.text_area :description%><br><br>
-<%= f.label "Select Category" %><br />
-<%= f.select(:category_id, Category.order("name").map { |s| [s.name, s.id] }) %>
-
-  <br>  <br>
-<%= f.label "Upload images" %>:
-  <br>
-  <%= f.file_field :images, accept: 'image/png,image/jpeg', multiple: true %><br><br>
-
- 
-
-  <%= f.submit "Create Post!", class:" btn btn-warning btn-lg submit" %>
-<% end %>
-
-
+    </div>
+  <%= link_to 'Back', :back %>
 </div>
 
 
-    <br>
-
-<%= link_to :"Back to home", "/" %>
-</div>

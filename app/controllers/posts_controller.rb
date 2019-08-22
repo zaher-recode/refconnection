@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-    before_action :authenticate_user!, except: [:show]
+    before_action :authenticate_user!, except: [:show, :index]
     def index
         @posts = Post.all
         @mine = current_user.posts
@@ -7,16 +7,15 @@ class PostsController < ApplicationController
 
 
     def new
+        @post = Post.new
     end
 
     def create
-        puts"###############################################"
-        p params
-        @post =Post.create(title: params[:title], description: params[:description],category_id: params[:category_id], user_id: current_user.id, images: params[:images])
+        @post =Post.create(post_params.merge(user_id: current_user.id))
+        # @post.images = params[:post][:images]
         redirect_to action: "show", id: @post.id  
     end
 
-   
     def show
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
@@ -30,16 +29,17 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        @post.title = params[:title]
-        @post.description = params[:description]
-        @post.category_id = params[:category_id]
-        if params[:images]
-        @post.images.attach(params[:images])
+        # @post.images.update(params[:post][:images])
+        @post.images.attach(params[:post][:images])
+        respond_to do |format|
+            if @post.update(post_params)
+                format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+                format.json { render :show, status: :created, location: @post }
+            else
+                format.html { render :new }
+                format.json { render json: @post.errors, status: :unprocessable_entity }
+            end
         end
-        @post.save
-    
-        redirect_to action: "show", id: @post.id  
-    
     end
     def destroy
         @post = Post.find(params[:id])
@@ -49,9 +49,8 @@ class PostsController < ApplicationController
         end
     end
 
-#    private
-#    def post_params
-#     params.require(:post).permit(:title,  :description, :category_id,:user_id,:images)
-
-#    end  
+   private
+   def post_params
+    params.require(:post).permit(:title,  :description, :category_id, images:[])
+   end  
 end

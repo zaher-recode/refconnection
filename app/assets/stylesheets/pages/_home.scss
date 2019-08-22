@@ -2,7 +2,7 @@
 .carousel-inner {
     position: relative;
     width: 100%;
-    height: 400px;
+    height: 500px;
     overflow: hidden;
     background-color: black;
 }
@@ -24,8 +24,8 @@
 
 .carousel-img {
     width: 100%;
-    height: 400px;
-    opacity: 0.7;
+    height: 500px;
+    // opacity: 0.7;
     object-fit: cover;
 }
 
@@ -49,10 +49,7 @@
     text-align: center;
 }
 
-// .cid-r6Vl2LvYf1 .mbr-section-subtitle,
-// .cid-r6Vl2LvYf1 .mbr-text {
-//     color: #f0f0f0;
-// }
+
 .cid-r6Vl2LvYf1 .row-item {
     color: #2873b6;
     margin: 2%;
@@ -64,6 +61,17 @@
 }
 
 .cid-r6Vl2LvYf1 .row-item:hover {
+    background: #2873b6;
+    color: #ffffff;
+}
+
+.cid-r6Vl2LvYf1 .container .row .row-item a {
+    color: #2873b6;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+.cid-r6Vl2LvYf1 .container .row .row-item a:hover {
     background: #2873b6;
     color: #ffffff;
 }

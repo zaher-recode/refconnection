@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
-    before_action :authenticate_organization!, except: [:show]
+    before_action :authenticate_organization!, except: [:show, :index]
+    before_action :authenticate_user!, except: [:show, :index]
+
     def index
         @events = Event.all
-        @mine = current_user.jobs
+        # @mine = current_organization.events
     end
 
     def new

@@ -45,45 +45,55 @@
 <%# SERVICES %>
 <section class="cid-r6Vl2LvYf1" id="features1-4">
     <div class="container">
+
         <div class="row justify-content-center text-center">
             <div class="col-md-6 col-lg-3">
                 <div class="row-item">
-                    <div class="card-img pb-3 align-center">
-                        <span class="mbr-iconfont fas fa-users"></span>
-                    </div>
-                    <h5 class="mbr-fonts-style mbr-card-title align-center pb-2 display-5">Communities</h5>
-        
-                    <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">connect with your Communities and get updated.</p>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-3">
-                <div class="row-item">
-                    <div class="card-img pb-3 align-center">
-                        <span class="mbr-iconfont far fa-calendar-alt"></span>
-                    </div>
-                    <h5 class="mbr-fonts-style mbr-card-title align-center pb-2 display-5">Events</h5>
-        
-                    <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">Be part of your Communities events.</p>
+                    <%= link_to organizations_path do %>
+                        <div class="card-img pb-3 align-center">
+                            <span class="mbr-iconfont fas fa-users"></span>
+                        </div>
+                        <h5 class="mbr-fonts-style mbr-card-title align-center pb-2 display-5">Communities</h5>
+            
+                        <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">connect with your Communities and get updated.</p>
+                     <% end %>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3">
                 <div class="row-item">
-                    <div class="card-img pb-3 align-left">
-                        <span class="mbr-iconfont fas fa-briefcase""></span>
-                    </div>
-                    <h5 class="mbr-fonts-style mbr-card-title align-center pb-2 display-5">Find Prossional Jobs</h5>
-                    <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">Find job that match your career.</p>
+                    <%= link_to events_path do %>
+                        <div class="card-img pb-3 align-center">
+                            <span class="mbr-iconfont far fa-calendar-alt"></span>
+                        </div>
+                        <h5 class="mbr-fonts-style mbr-card-title align-center pb-2 display-5">Events</h5>
+            
+                        <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">Be part of your Communities events.</p>
+                    <% end %>
                 </div>
             </div>
 
             <div class="col-md-6 col-lg-3">
                 <div class="row-item">
-                    <div class="card-img pb-3 align-left">
-                        <span class="mbr-iconfont far fa-clipboard"></span>
-                    </div>
-                    <h5 class=" mbr-fonts-style mbr-card-title align-center pb-2 display-5">Post your talent</h5>
-                    <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">post your talent to help people.</p>
+                    <%= link_to jobs_path do %>
+                        <div class="card-img pb-3 align-left">
+                            <span class="mbr-iconfont fas fa-briefcase""></span>
+                        </div>
+                        <h5 class="mbr-fonts-style mbr-card-title align-center pb-2 display-5">Find Prossional Jobs</h5>
+                        <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">Find job that match your career.</p>
+                    <% end %>                
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-3">
+                <div class="row-item">
+                    <%= link_to posts_path do %>
+                        <div class="card-img pb-3 align-left">
+                            <span class="mbr-iconfont far fa-clipboard"></span>
+                        </div>
+                        <h5 class=" mbr-fonts-style mbr-card-title align-center pb-2 display-5">Post your talent</h5>
+                        <p class="mbr-text mbr-fonts-style align-center mbr-light m-0 display-7 fg-color">post your talent to help people.</p>
+                     <% end %>
                 </div>
             </div>
 

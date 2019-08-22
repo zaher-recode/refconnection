@@ -1,5 +1,7 @@
 class JobsController < ApplicationController
-    before_action :authenticate_organization!, except: [:show]
+    before_action :authenticate_organization!, except: [:show, :index]
+    before_action :authenticate_user!, except: [:show, :index]
+
     def index
         @jobs = Job.all
         @mine = current_organization.jobs
