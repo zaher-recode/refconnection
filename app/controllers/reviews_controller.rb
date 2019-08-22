@@ -22,12 +22,17 @@ class ReviewsController < ApplicationController
 
     def update
         @review = Review.find(params[:id])
-        @review.title = params[:title]
-        @review.text = params[:text]
-        @review.rating = params[:rating]
-        @review.save
+        respond_to do |format|
+            if @review.update(review_params)
+                format.html { redirect_to "/posts/#{@review.post_id}", notice: 'Review was successfully updated.' }
+                format.json { render :show, status: :created, location: @review }
+
+            else
+                format.html { render :new }
+                format.json { render json: @review.errors, status: :unprocessable_entity }
+            end
+        end
     
-        redirect_to "/posts/#{@review.post_id}"
     end
 
     def destroy
