@@ -12,11 +12,19 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
+    <% if !current_user.image.attached? %>
+      <%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:80%;'%>
+    <% else %>
+      <%= image_tag current_user.image, class:'avatar text-center',style:'width:80%;'%>
+    <% end %>
+    <br>
+    <p class='fg-color'>Avatar: <%= f.file_field :image %></p>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
     <% end %>
+    <%= f.input :email, required: true, autofocus: true %>
+
     <%= f.input :username,
                 hint: "Fill in your new username",
                 required: false,

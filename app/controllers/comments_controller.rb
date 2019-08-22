@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
     end
 
     def new
-       
+        @comment =Comment.new
     end
 
     def create
@@ -14,12 +14,10 @@ class CommentsController < ApplicationController
 
         if @comment.save
             redirect_to post_path(@post)
-
-        # redirect_to action: "/posts/#{@comment.post_id}", id: @comment.id
         else
-            render "new"
+            redirect_to "index"
         end
-
+ 
     end
 
    

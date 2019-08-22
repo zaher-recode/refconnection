@@ -15,12 +15,17 @@ Rails.application.routes.draw do
 
   root to: "homes#index"
   get '/organizations', to: 'homes#org', as: :org_root
-  resources :organizations
 
+  resources :organizations
+  resources :users
   resources :posts
   resources :events
   resources :jobs
   resources :comments
+
+  resources :comments
+
+  resources :reviews
 
   resources :collections do
     member do

@@ -113,6 +113,7 @@ Rating:
   </div>
 <% end %>
 
+
 <%@post.comments.count%>
 <%@comments.each do |comment|%>
     <%= comment.text %>
@@ -122,6 +123,85 @@ Rating:
 <% end %>
 
 <%= link_to :"Back to home", "/" %>
+
+<h2 class="header-ternary"> Reviews </h1> 
+<div id="reviews">
+
+<%if current_user%>
+  <div class="card">
+    <div class="card-header">
+        <h3>Add Review </h3>
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+       
+       
+<%= simple_form_for @review, remote: true do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+
+    <%= f.input :title, required: true %>
+    <%= f.input :rating, required: true, collection: 1..5 %>
+
+    <%= f.input :text, required: true %>
+    <%=f.hidden_field :post_id, :value => @post.id%>
+
+    
+  </div>
+  <br>
+  <div class="form-actions text-center">
+    <%= f.button :submit, id: "submit" %>
+  </div>
+<% end %>
+       </blockquote>
+    </div>
+  </div>
+
+<%end%>
+
+<div class="reviews">
+
+<% if @reviews.empty?%>
+
+<p> There are no reviews to show </p>
+
+<%else%>
+<%(@reviews.length).times do |i|%>
+
+<div class="card">
+  <div class="card-header">
+    <strong><%= @reviews[i].title%> </strong>
+     <% @reviews[i].rating.to_i.times do  %>
+        <span class="text-warning">&#9733;</span>
+    <% end %>
+    <% (5 -  @reviews[i].rating.to_i).times do  %>
+        <span class="text-warning">&#9734;</span>
+    <% end %>
+</h1> 
+  </div>
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p><%= @reviews[i].text%></p>
+      <footer class="blockquote-footer">By:  <cite title="Source Title"><%=@reviews[i].user.username%></cite>
+      <%if current_user && current_user.id == @reviews[i].user_id%>
+        <%=link_to "edit", "/reviews/#{@reviews[i].id}/edit"%>
+        <%= link_to 'Delete',"/reviews/#{@reviews[i].id}" ,
+        method: :delete, 
+        data: { confirm: 'Are you sure?' } %>
+      <%end%>
+      </footer>
+    </blockquote>
+  </div>
+  <div class="card-footer">
+        <small class="text-dark">Reviewed:  <%= time_ago_in_words(@reviews[i].created_at) %></small>
+    </div>
+</div>
+
+<%end%>
+<%end%>
+</div>
 
 
 

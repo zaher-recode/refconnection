@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="row">
+
+<%# Review Book %>
+  <div class="col-md-9">
+      <% if @user_posts.empty? %>
+        <p> There are not user_posts yet,</p>
+        <%else%>
+            <div class='container'>
+            <div id="cards">
+                    <% (@user_posts.length).times do |i| %>
+                        <!-- Card Wider -->
+                            <div class="card card-cascade wider">
+                            <!-- Card image -->
+                            <div class="view view-cascade overlay">
+                                <%= link_to(image_tag(url_for(@user_posts[i].images.first),class:"card-img-top"), post_path(@user_posts[i])) %>
+                                <a href="#!">
+                                <div class="mask rgba-white-slight"></div>
+                                </a>
+                            </div>
+                            <!-- Card content -->
+                            <div class="card-body card-body-cascade text-left">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong><%=@user_posts[i].title%></strong></h4>
+                                <!-- Text -->
+                                <p class="card-text g-color"><%=@user_posts[i].description%></p>
+                                <br>
+                                <small class="blue-text pb-2"><strong>by : <%= link_to @user_posts[i].user.username, user_path(@user_posts[i].user)%> </strong></small>
+                            </div>
+                            <!-- Card footer -->
+                            <div class="card-footer text-muted text-center">
+                                <small class="g-color">Last updated:  <%= time_ago_in_words(@user_posts[i].updated_at) %></small>
+                            </div>
+                            </div>
+                            <!-- Card Wider -->
+                    <% end %>
+                            
+                        </div>
+                </div>
+        <% end %>
+    </div>
+<div class="col-md-3">
+<div class='profil card'>
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+                    <% if !@user.image.attached? %>
+                    <%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100%;'%>
+                    <% else %>
+                    <%= image_tag @user.image, class:'avatar text-center',style:'width:100%;'%>
+                    <% end %>
+				</div>
+				<!-- END SIDEBAR USERPIC -->
+				<!-- SIDEBAR USER TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= @user.username.capitalize %> 
+					</div>
+					<%# <div class="profile-usertitle-job">
+						Developer
+					</div> %>
+				</div>
+				<!-- END SIDEBAR USER TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<button type="button" class="btn btn-success btn-sm">Follow</button>
+					<button type="button" class="btn btn-danger btn-sm">Message</button>
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li>
+							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Setting".html_safe, edit_user_registration_path(@user)%>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		</div>
+
+
+  
+
+    </div>
+</div>
+
+

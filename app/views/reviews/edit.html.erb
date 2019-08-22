@@ -1,0 +1,23 @@
+<h4 class="main-color">Edit Review</h4>
+    <div class="container text-left sign-form">
+
+<%= simple_form_for @review, remote: true do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="form-inputs">
+    
+    <%= f.input :title, required: true %>
+    <%= f.input :rating, required: true, collection: 1..5%>
+    <%= f.input :text, required: true %>
+  <br>
+  <div class="form-actions text-center">
+  
+    <%= f.button :submit %>
+  </div>
+<% end %>
+
+    </div>
+  <%= link_to 'Back', :back %>
+</div>
+

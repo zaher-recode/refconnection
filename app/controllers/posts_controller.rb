@@ -1,22 +1,27 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :index]
     def index
-        @posts = Post.all
-        @mine = current_user.posts
+        @posts = Post.all.order("created_at DESC")
+            if current_user
+            @mine = current_user.posts
+        end
     end
 
 
     def new
         @post = Post.new
+
     end
 
     def create
+        
         @post =Post.create(post_params.merge(user_id: current_user.id))
         # @post.images = params[:post][:images]
         redirect_to action: "show", id: @post.id  
     end
 
     def show
+        @review =Review.new
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
         @comment = Comment.new

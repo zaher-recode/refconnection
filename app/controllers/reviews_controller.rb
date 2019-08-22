@@ -1,38 +1,50 @@
 class ReviewsController < ApplicationController
    
-    
-
+    def index
+    end
+    def new
+        @review = Review.new
+    end
     def create
-        @review =Review.create(title: params[:title], text: params[:text],post_id: @post.id, user_id: current_user.id, rating: params[:rating])
+        puts "###################$$$$$$$$$$$$$$$$$$$$$$$$$"
+        @review =Review.create(review_params.merge( user_id: current_user.id))
+        Post.find(@review.post_id).add_rating(@review.rating)
+        redirect_to "/posts/#{@review.post_id}"
     end
 
-   
+
+        
 
     def edit
         @review = Review.find(params[:id])
-        verify_user
+        verify_user_review
     end
 
     def update
         @review = Review.find(params[:id])
-        @review.title = params[:title]
-        @review.text = params[:text]
-        @review.rating = params[:rating]
-        @review.save
+        respond_to do |format|
+            if @review.update(review_params)
+                format.html { redirect_to "/posts/#{@review.post_id}", notice: 'Review was successfully updated.' }
+                format.json { render :show, status: :created, location: @review }
+
+            else
+                format.html { render :new }
+                format.json { render json: @review.errors, status: :unprocessable_entity }
+            end
+        end
     
-        redirect_to action: "show", id: @job.id  
     end
 
     def destroy
         @review = Review.find(params[:id])
-        unless verify_user
+        unless verify_user_review
         @review.destroy
-        redirect_to action: "index"
+        redirect_to "/posts/#{@review.post_id}"
         end
     end
 
    private
    def review_params
-    params.require(:review).permit(:title,  :text, :rating, :post_id, :user_id)
+    params.require(:review).permit(:title,  :text, :rating, :post_id)
    end  
 end
