@@ -4,10 +4,11 @@ class CommentsController < ApplicationController
     end
 
     def new
-        
+        @comment =Comment.new
     end
 
     def create
+        @comment = Comment.create(comment_params.merge(user_id: current_user.id, post_id: @post.id))
     end
 
    
@@ -25,6 +26,6 @@ class CommentsController < ApplicationController
 
    private
    def comment_params
-    params.require(:comment).permit(:text, :post_id, :user_id)
+    params.require(:comment).permit(:text)
    end  
 end
