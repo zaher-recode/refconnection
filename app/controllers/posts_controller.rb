@@ -10,15 +10,18 @@ class PostsController < ApplicationController
 
     def new
         @post = Post.new
+
     end
 
     def create
+        
         @post =Post.create(post_params.merge(user_id: current_user.id))
         # @post.images = params[:post][:images]
         redirect_to action: "show", id: @post.id  
     end
 
     def show
+        @review =Review.new
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
         @comments = Comment.where(post_id: @post.id).order("created_at DESC")
