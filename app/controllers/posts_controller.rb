@@ -19,7 +19,8 @@ class PostsController < ApplicationController
     def show
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
-        @comments = Comment.where(post_id: @post.id).order("created_at DESC")
+        @comment = Comment.new
+        @comments = @post.comments
     end
 
     def edit
@@ -51,6 +52,9 @@ class PostsController < ApplicationController
     end
 
    private
+   def post_params
+    params.require(:post).permit(:title,  :description, :category_id,:images)
+   end  
    def post_params
     params.require(:post).permit(:title,  :description, :category_id,:images)
    end  
