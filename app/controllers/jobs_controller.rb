@@ -37,6 +37,10 @@ class JobsController < ApplicationController
     def update
    
         @job = Job.find(params[:id]) 
+        @job = Job.find(params[:id])
+        if params[:job][:images]
+            @job.images.attach(params[:job][:images])
+        end
         if @job.update_attributes(job_params) 
           redirect_to(:action => 'show', :id => @job.id) 
         else 
