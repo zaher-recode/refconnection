@@ -13,7 +13,7 @@ class EventsController < ApplicationController
 
     def create
         @event =Event.create(event_params.merge(organization_id: current_organization.id))
-        @event.image = params[:post][:image]
+        @event.images = params[:post][:images]
         respond_to do |format|
             if @event.save
                 format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -36,7 +36,10 @@ class EventsController < ApplicationController
 
     def update
         @event = Event.find(params[:id])
-        @event.image = params[:post][:image]
+        @event = Event.find(params[:id])
+        if params[:event][:images]
+            @event.images.attach(params[:event][:images])
+        end        
         respond_to do |format|
             if @event.update(event_params)
                 format.html { redirect_to @event, notice: 'Event was successfully updated.' }
