@@ -29,8 +29,9 @@ class PostsController < ApplicationController
 
     def update
         @post = Post.find(params[:id])
-        # @post.images.update(params[:post][:images])
-        @post.images.attach(params[:post][:images])
+        if params[:post][:images]
+            @post.images.attach(params[:post][:images])
+        end
         respond_to do |format|
             if @post.update(post_params)
                 format.html { redirect_to @post, notice: 'Post was successfully updated.' }
@@ -51,6 +52,6 @@ class PostsController < ApplicationController
 
    private
    def post_params
-    params.require(:post).permit(:title,  :description, :category_id, images:[])
+    params.require(:post).permit(:title,  :description, :category_id,:images)
    end  
 end
