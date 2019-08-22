@@ -7,7 +7,7 @@
     <%= f.input :description %>
     <%= f.association :category, prompt: "Select Category", input_html: { class: "form-control center" } %>
     <p class='fg-color'>Add images:</p>
-    <%= f.file_field :images, accept: 'image/png,image/jpeg', multiple: true %>
+    <%= f.file_field :images, multiple: true %>
   </div>
   <br>
   <div class="form-actions text-center">

@@ -1,8 +1,10 @@
 class EventsController < ApplicationController
-    before_action :authenticate_organization!, except: [:show]
+    before_action :authenticate_organization!, except: [:show, :index]
+    before_action :authenticate_user!, except: [:show, :index]
+
     def index
         @events = Event.all
-        @mine = current_organization.events
+        # @mine = current_organization.events
     end
 
     def new
@@ -11,7 +13,7 @@ class EventsController < ApplicationController
 
     def create
         @event =Event.create(event_params.merge(organization_id: current_organization.id))
-        @event.image = params[:image]
+        @event.image = params[:post][:image]
         respond_to do |format|
             if @event.save
                 format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -34,7 +36,7 @@ class EventsController < ApplicationController
 
     def update
         @event = Event.find(params[:id])
-        @event.image = params[:image]
+        @event.image = params[:post][:image]
         respond_to do |format|
             if @event.update(event_params)
                 format.html { redirect_to @event, notice: 'Event was successfully updated.' }
@@ -56,6 +58,6 @@ class EventsController < ApplicationController
 
    private
    def event_params
-    params.require(:event).permit(:title,  :description, :start_date, :end_date, :address, :image)
+    params.require(:event).permit(:title,  :description, :start_date, :end_date, :address, :images)
    end  
 end
