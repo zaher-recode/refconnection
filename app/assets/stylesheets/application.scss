@@ -23,19 +23,19 @@ border-radius: 1rem;
 
 // NAVBAR
 .navbar {
-    background-color: white;
+    background-color: #2873b6;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #2873b6;
+    color: white;
 }
 
 .nav-box {
-    color: white;
-    background-color: #09927b;
+  border-radius: 2rem;
+  border: 2px solid #ffff;
+  color: white;
 }
-
 .navbar li {
     // margin: 0 10px;
     display: block;
@@ -47,8 +47,10 @@ border-radius: 1rem;
 }
 
 .navbar li:hover {
-    color: white;
-    background-color: #145791;
+    color: #145791;
+    background-color: #fff;
+    border: 2px solid white;
+    border-radius: 2rem;
 }
 
 .main-box {
@@ -77,7 +79,6 @@ border-radius: 1rem;
     /* margin-top: 2%; */
     /* height: 24px; */
     // background-color: #f1f1f1d3;
-    border-radius: -3px;
     // padding: 4px 0px;
 }
 
@@ -90,19 +91,23 @@ border-radius: 1rem;
     line-height: 40px;
     transition: width 0.4s linear;
 }
+.searchbar ::placeholder {
+  color: white;
+}
 
 .searchbar:hover>.search_input {
-    padding: 0 10px;
+    padding: 0 20px;
     width: 450px;
     height: 48px;
+    border-radius: 2rem;
+    border: 2px solid white;
     transition: width 0.4s linear;
-    background-color: #d4d4d48e;
 }
 
 .searchbar:hover>.search_icon {
     // background: white;
-    color: #ececec;
-    background-color: #2873b6;
+    color: #ffff;
+    // background-color: #2873b6;
 }
 
 .search_icon {
