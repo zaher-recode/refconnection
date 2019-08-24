@@ -15,24 +15,27 @@ body {
 
 .card {
     margin: 2% 0;
-    // border-radius: 2rem;
+    padding: 2rem;
+    -webkit-border-radius: 1rem;
+-moz-border-radius: 1rem;
+border-radius: 1rem;
   }
 
 // NAVBAR
 .navbar {
-    background-color: white;
+    background-color: #2873b6;
 }
 
 .navbar a {
     text-decoration: none;
-    color: #2873b6;
+    color: white;
 }
 
 .nav-box {
-    color: white;
-    background-color: #09927b;
+  border-radius: 2rem;
+  border: 2px solid #ffff;
+  color: white;
 }
-
 .navbar li {
     // margin: 0 10px;
     display: block;
@@ -44,8 +47,10 @@ body {
 }
 
 .navbar li:hover {
-    color: white;
-    background-color: #145791;
+    color: #145791;
+    background-color: #fff;
+    border: 2px solid white;
+    border-radius: 2rem;
 }
 
 .main-box {
@@ -74,7 +79,6 @@ body {
     /* margin-top: 2%; */
     /* height: 24px; */
     // background-color: #f1f1f1d3;
-    border-radius: -3px;
     // padding: 4px 0px;
 }
 
@@ -87,19 +91,23 @@ body {
     line-height: 40px;
     transition: width 0.4s linear;
 }
+.searchbar ::placeholder {
+  color: white;
+}
 
 .searchbar:hover>.search_input {
-    padding: 0 10px;
+    padding: 0 20px;
     width: 450px;
     height: 48px;
+    border-radius: 2rem;
+    border: 2px solid white;
     transition: width 0.4s linear;
-    background-color: #d4d4d48e;
 }
 
 .searchbar:hover>.search_icon {
     // background: white;
-    color: #ececec;
-    background-color: #2873b6;
+    color: #ffff;
+    // background-color: #2873b6;
 }
 
 .search_icon {
@@ -146,7 +154,17 @@ input.btn,
   background-color: rgba(0, 0, 0, 0);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
-
+.card-text {
+  color: rgba(0, 0, 0, 0.473);
+}
+.card-title {
+  color: rgba(0, 0, 0, 0.747);
+}
+.card-body {
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+  padding: 0.8rem;
+}
 // PROFILE
 /* Profile container */
 .profile {
@@ -239,30 +257,104 @@ input.btn,
     border-left: 2px solid #5b9bd1;
     margin-left: -2px;
   }
-  
+
+a:hover {
+  text-decoration: none;
+}
+
+.card .card-img-top {    
+  width: 100%;
+  -webkit-border-top-left-radius: 2rem;
+-webkit-border-top-right-radius: 2rem;
+-webkit-border-bottom-right-radius: 2rem;
+-webkit-border-bottom-left-radius: 2rem;
+-moz-border-radius-topleft: 2rem;
+-moz-border-radius-topright: 2rem;
+-moz-border-radius-bottomright: 2rem;
+-moz-border-radius-bottomleft: 2rem;
+border-top-left-radius: 2rem;
+border-top-right-radius: 2rem;
+border-bottom-right-radius: 2rem;
+border-bottom-left-radius: 2rem;
+}
+
+.profile-card {
+  margin: 2% 0;
+  padding: 1rem;
+  border-radius: 2rem;
+  position: relative;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+          flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0, 0, 0, 0.125);
+  border-radius: 2px;
+}
+
+.far {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.fa,
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;font-size: 1.3rem;
+}
+
+.post-footer-text{
+  font-size:1.3rem;
+}
+
+.card-footer-comments strong{
+  padding: 0 0.5rem; 
+}
+.card-footer-rates {
+margin: 0 1rem ;
+}
+.card-footer-rates strong{
+  padding: 0 0.5rem; 
+}
+
+// search-bar
+.main-col {
+  padding: 0 1rem;
+}
+.show-content{
+padding: 1rem 2rem;
+}
+
+.show-content p{
+  font-size: 120%;
+}
+
+// Messages
+.messages-list {
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 
-  .messages-list {
-    max-height: 200px;
-    overflow-y: auto;
-    overflow-x: hidden;
-  }
-  
-  
-  .message-sent {
-    position: relative;
-    background-color: #D9EDF7;
-    border-color: #BCE8F1;
-    margin: 5px 20px;
-    padding: 10px;
-    float: right;
-  }
-  
-  
-  .message-received {
-    background-color: #F1F0F0;
-    border-color: #EEEEEE;
-    margin: 5px 20px;
-    padding: 10px;
-    float: left;
-  }
+.message-sent {
+  position: relative;
+  background-color: #D9EDF7;
+  border-color: #BCE8F1;
+  margin: 5px 20px;
+  padding: 10px;
+  float: right;
+}
+
+
+.message-received {
+  background-color: #F1F0F0;
+  border-color: #EEEEEE;
+  margin: 5px 20px;
+  padding: 10px;
+  float: left;
+}

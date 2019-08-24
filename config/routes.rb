@@ -11,9 +11,8 @@ Rails.application.routes.draw do
     registrations: 'organizations/registrations'
   }
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-
-  root to: "homes#index"
+  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htmlp
+  
   get '/organizations', to: 'homes#org', as: :org_root
 
   resources :organizations
@@ -36,5 +35,14 @@ Rails.application.routes.draw do
       delete :delete_image_attachment
     end
   end
+  # if current_user || current_organization
+  #   if current_user
+  #     root to: "homes#index"
+  #   else
+  #     root to: "homes#org"
+  #   end
+  # else
+    root to: "homes#index"
+  # end
 
 end

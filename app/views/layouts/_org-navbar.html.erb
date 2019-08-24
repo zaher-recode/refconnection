@@ -1,6 +1,2 @@
-<li class="">
-    <%= link_to current_organization.email, edit_organization_registration_path, :class => '' %> 
-</li>
-<li class="">
-    <%= link_to "Logout", destroy_organization_session_path, method: :delete, :class => ''  %>
-</li>
+<%= link_to "<li>#{current_organization.company_name}<li>".html_safe, organization_path(current_organization)  %>
+<%= link_to "<li>Logout</li>".html_safe, destroy_organization_session_path, method: :delete  %>
