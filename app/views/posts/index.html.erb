@@ -1,23 +1,4 @@
-<!-- Navigation -->
-<div class="navbar">
-    <%# HEARDER OR LOGO %>
-    <%= render 'layouts/navbar-header'%>
-    <%# LEFT SIDE %>
-    <div> 
-    <% if user_signed_in?%>
-    <strong>
-      <ul class="text-right">
-        <%= render 'layouts/add-navbar'%>
-        <% @user = current_user %>
-        <%= render 'layouts/user-navbar' %>
-      </strong>
-      <%else %>
-        <%= render 'layouts/guest-user-navbar'%>
-      </ul>
-<% end %>
 
-    </div>
-  </div>
 <div class='row main-col'>
 <div class='container col-sm-3'>
 </div>
