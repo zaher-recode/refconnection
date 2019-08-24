@@ -24,11 +24,12 @@ border-radius: 1rem;
 // NAVBAR
 .navbar {
     background-color: #2873b6;
+    padding: 0.5rem 7rem;
 }
 
-.navbar a {
-    text-decoration: none;
-    color: white;
+.navbar li {
+  text-decoration: none;
+  color: white;
 }
 
 .nav-box {
@@ -52,6 +53,37 @@ border-radius: 1rem;
     border: 2px solid white;
     border-radius: 2rem;
 }
+// .nav-profile li {
+//   color: #145791;
+// }
+// .nav-profile:hover {
+//   color: white;
+//   background-color: #145791; 
+//   border: 2px solid white;
+//   border-radius: 2rem;
+// }
+.navbar .nav-profile ul li a{
+  text-decoration: none;
+  color: #145791;
+}
+// .navbar .nav-profile ul li a:hover {
+//   text-decoration: none;
+//   color: white;
+//   background-color:#145791 ;
+// }
+
+.nav-profile {
+  border: 2px solid white;
+  border-radius: 2rem;
+}
+.dropdown-toggle {
+  color:white;
+}
+
+li.dropdown:hover > .dropdown-menu {
+    display: block;
+}
+
 
 .main-box {
     background-color: #2873b6;
@@ -264,18 +296,9 @@ a:hover {
 
 .card .card-img-top {    
   width: 100%;
-  -webkit-border-top-left-radius: 2rem;
--webkit-border-top-right-radius: 2rem;
--webkit-border-bottom-right-radius: 2rem;
--webkit-border-bottom-left-radius: 2rem;
--moz-border-radius-topleft: 2rem;
--moz-border-radius-topright: 2rem;
--moz-border-radius-bottomright: 2rem;
--moz-border-radius-bottomleft: 2rem;
-border-top-left-radius: 2rem;
-border-top-right-radius: 2rem;
-border-bottom-right-radius: 2rem;
-border-bottom-left-radius: 2rem;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  border-radius: 1rem;
 }
 
 .profile-card {
@@ -332,3 +355,4 @@ padding: 1rem 2rem;
 .show-content p{
   font-size: 120%;
   }
+

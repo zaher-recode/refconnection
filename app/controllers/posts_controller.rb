@@ -21,6 +21,7 @@ class PostsController < ApplicationController
     end
 
     def show
+        @user = current_user
         @review =Review.new
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
