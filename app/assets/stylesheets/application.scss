@@ -16,9 +16,9 @@ body {
 .card {
     margin: 2% 0;
     padding: 2rem;
-    -webkit-border-radius: 2rem;
--moz-border-radius: 2rem;
-border-radius: 2rem;
+    -webkit-border-radius: 1rem;
+-moz-border-radius: 1rem;
+border-radius: 1rem;
   }
 
 // NAVBAR
@@ -149,7 +149,17 @@ input.btn,
   background-color: rgba(0, 0, 0, 0);
   border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
-
+.card-text {
+  color: rgba(0, 0, 0, 0.473);
+}
+.card-title {
+  color: rgba(0, 0, 0, 0.747);
+}
+.card-body {
+  -webkit-box-flex: 1;
+          flex: 1 1 auto;
+  padding: 0.8rem;
+}
 // PROFILE
 /* Profile container */
 .profile {
@@ -280,3 +290,40 @@ border-bottom-left-radius: 2rem;
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 2px;
 }
+
+.far {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.fa,
+.fas {
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;font-size: 1.3rem;
+}
+
+.post-footer-text{
+  font-size:1.3rem;
+}
+
+.card-footer-comments strong{
+  padding: 0 0.5rem; 
+}
+.card-footer-rates {
+margin: 0 1rem ;
+}
+.card-footer-rates strong{
+  padding: 0 0.5rem; 
+}
+
+// search-bar
+.main-col {
+  padding: 0 1rem;
+}
+.show-content{
+padding: 1rem 2rem;
+}
+
+.show-content p{
+  font-size: 120%;
+  }

@@ -25,7 +25,7 @@ class PostsController < ApplicationController
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
         @comment = Comment.new
-        @comments = @post.comments
+        @comments = @post.comments.order("created_at DESC")
     end
 
     def edit

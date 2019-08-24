@@ -2,31 +2,35 @@
 <% if @events.empty? %>
     <p> There are not events yet,</p>
 <%else%>
-<div class='container col-md-9'>
+<div class='container col-md-6'>
             <div id="cards">
                     <% (@events.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
-                            <!-- Card image -->
-                            <div class="view view-cascade overlay">
-                                <%= link_to(image_tag(url_for(@events[i].images.first),class:"card-img-top"), event_path(@events[i])) %>
-                                <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                                </a>
+                            <div class="text-muted">
+                                <h4><strong><%= link_to @events[i].organization.company_name, user_path(@events[i].organization), class:'main-color'%></strong></h4>
+                                <p class="g-color">updated at: <%= time_ago_in_words(@events[i].updated_at) %> ago</p>
                             </div>
-                            <!-- Card content -->
-                            <div class="card-body card-body-cascade text-left">
-                                <!-- Title -->
-                                <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
-                                <!-- Text -->
-                                <p class="card-text g-color"><%=@events[i].description%></p>
-                                <br>
-                                <small class="blue-text pb-2"><strong>by : <%= link_to @events[i].organization.company_name, organization_path(@events[i].organization)%> </strong></small>
-                            </div>
+                                <% if @events[i].images.attached? %>
+                                    <!-- Card image -->
+                                    <div class="view view-cascade overlay">
+                                        <%= link_to(image_tag(url_for(@events[i].images.first),class:"card-img-top"), event_path(@events[i])) %>
+                                    </div>
+                                <% end %>
+                                    <!-- Card content -->
+                                    <div class="card-body card-body-cascade text-left">
+                                        <!-- Title -->
+                                        <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
+                                        <!-- Text -->
+                                        <h5 class="card-text"><%=@events[i].description%></h5>
+                                    </div>
+                                
                             <!-- Card footer -->
-                            <div class="card-footer text-muted text-center">
-                                <small class="g-color">Last updated:  <%= time_ago_in_words(@events[i].updated_at) %></small>
-                            </div>
+                            <%# <div class="card-footer text-muted row"> %>
+                                <%# <div class='card-footer-comments'><i class="far fa-comment g-color"></i> %>
+                                <%#<strong class='event-footer-text'><%#@events[i].comments.size%>
+                                <%# </div> %>
+                            <%# </div> %>
                             </div>
                             <!-- Card Wider -->
                     <% end %>

@@ -1,38 +1,71 @@
-<h1 class="text-center header-primary mt-5">Posts</h1>
+<!-- Navigation -->
+<div class="navbar">
+    <%# HEARDER OR LOGO %>
+    <%= render 'layouts/navbar-header'%>
+    <%# LEFT SIDE %>
+    <div> 
+    <% if user_signed_in?%>
+    <strong>
+      <ul class="text-right">
+        <%= render 'layouts/add-navbar'%>
+        <% @user = current_user %>
+        <%= render 'layouts/user-navbar' %>
+      </strong>
+      <%else %>
+        <%= render 'layouts/guest-user-navbar'%>
+      </ul>
+<% end %>
+
+    </div>
+  </div>
+<div class='row main-col'>
+<div class='container col-sm-3'>
+</div>
+
+<div class='container col-md-6'>
+<strong><h2 class=" header-primary mt-4">Posts</h2></strong>
+<% if user_signed_in? %>
+<%= link_to "Add new post","/posts/new",class:"btn btn-warning mx-4 my-4 btn-lg"  %>
+<% end %>
+
 <% if @posts.empty? %>
     <p> There are not posts yet,</p>
 <%else%>
-<div class='container col-md-6'>
             <div id="cards">
                     <% (@posts.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
                             <div class="text-muted">
-                                <strong><%= link_to @posts[i].user.username, user_path(@posts[i].user)%></strong>
+                                <h4><strong><%= link_to @posts[i].user.username, user_path(@posts[i].user), class:'main-color'%></strong></h4>
+                                <p class="g-color">updated at: <%= time_ago_in_words(@posts[i].updated_at) %> ago</p>
                             </div>
-                                <!-- Card image -->
-                                <div class="view view-cascade overlay">
-                                    <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
-                                </div>
-                                <!-- Card content -->
-                                <div class="card-body card-body-cascade text-left">
-                                    <!-- Title -->
-                                    <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
-                                    <!-- Text -->
-                                    <p class="card-text g-color"><%=@posts[i].description%></p>
-                                </div>
+                                <% if @posts[i].images.attached? %>
+                                    <!-- Card image -->
+                                    <div class="view view-cascade overlay">
+                                        <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
+                                    </div>
+                                <% end %>
+                                    <!-- Card content -->
+                                    <div class="card-body card-body-cascade text-left">
+                                        <!-- Title -->
+                                        <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
+                                        <!-- Text -->
+                                        <h5 class="card-text"><%=@posts[i].description%></h5>
+                                    </div>
                                 
                             <!-- Card footer -->
-                            <div class="card-footer text-muted">
-                                <small class="g-color">updated at: <%= time_ago_in_words(@posts[i].updated_at) %> ago</small>
+                            <div class="card-footer text-muted row">
+                                <div class='card-footer-comments'><i class="far fa-comment g-color"></i><strong class='post-footer-text'><%=@posts[i].comments.size%></strong></div>
+                                <div class='card-footer-rates'><i class="fas fa-star g-color"></i><strong class='post-footer-text'><%=@posts[i].show_rating%></strong></div>
                             </div>
                             </div>
                             <!-- Card Wider -->
                     <% end %>
                             
-                        </div>
+            </div>
                 </div>
 <% end %>
-   
-
-<%= link_to "Add new post","/posts/new",class:"btn btn-warning mx-4 my-4 btn-lg"  %>
+<div class='container col-md-3 mt-4' style='padding-left: 0; padding-top: 1.8rem;'>
+        <%= render 'posts/search-cat'%>    
+</div>
+</div>
