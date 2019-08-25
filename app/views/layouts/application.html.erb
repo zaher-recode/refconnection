@@ -36,6 +36,14 @@
       </strong>
     </div>
   </div>
+<% else %>
+  <% unless current_page?(org_root_path) || current_page?(new_organization_session_path) || current_page?(new_organization_registration_path)%>
+      <%= render 'layouts/guest-user-navbar'%>
+      <% else %>
+        <!-- Navigation -->
+      <%= render 'layouts/guest-org-navbar'%>
+  <% end  %>
+
 <% end %>
 
 

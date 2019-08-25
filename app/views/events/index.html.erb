@@ -43,7 +43,7 @@
                             <!-- IMAGES -->
                             <% if @events[i].images.attached? %>
                                 <!-- Card image -->
-                                <div class="view view-cascade overlay">
+                                <div class="card-img-box">
                                     <%= link_to(image_tag(url_for(@events[i].images.first),class:"card-img-top"), event_path(@events[i])) %>
                                 </div>
                             <% end %>
@@ -52,15 +52,15 @@
                                 <!-- Title -->
                                 <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
                                 <!-- Text -->
-                                <h5 class="card-text"><%=@events[i].description%></h5>
+                                <p class="card-text"><%=@events[i].description%></p>
                             </div>
+                            <div class=''><button type="button" class="attend-btn"><strong>ATTEND</strong></button></div>
+
                             <hr> 
                             <!-- Card footer -->
-                            <%# <div class="card-footer text-muted row"> %>
-                                <%# <div class='card-footer-comments'><i class="far fa-comment g-color"></i> %>
-                                <%#<strong class='event-footer-text'><%#@events[i].comments.size%>
-                                <%# </div> %>
-                            <%# </div> %>
+                            <div class="container row">
+                                <div class='card-footer-comments'><%= link_to "<strong class='far fa-calendar-check g-color post-footer-text'> #{@events[i].attendees.size} </strong>".html_safe , event_path(@events[i]) %> </div>
+                            </div>
                             </div>
                             <!-- Card Wider -->
                     <% end %>

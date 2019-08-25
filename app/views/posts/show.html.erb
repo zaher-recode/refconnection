@@ -1,12 +1,14 @@
 <div class='row main-col'>
-<div class='container col-md-7'>    
+<div class='container col-md-7'>   
+<% if @post %> 
   <div class='card'>
+  
                         <% if @post.user == current_user %>
                           <div class="dropdown text-right">
                             <a class="fas fa-ellipsis-h g-color" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <%= link_to :"Edit", edit_comment_path(@post),class:'dropdown-item' %>
+                            <%= link_to :"Edit", edit_post_path(@post),class:'dropdown-item' %>
                             <%= link_to 'Delete', @post, method: :delete, data: { confirm: "remove this post?" }, class:"dropdown-item danger"%>
                             </div>
                           </div>
@@ -115,12 +117,13 @@
 
             </div>
             </div>
+            <hr>
           <%end%>
           
           </div>
         </div>
       
-      <hr>
+      
         <div class='container'>
             <% if @reviews.empty?%>
               <p> There are no reviews to show </p>
@@ -170,12 +173,9 @@
         </div>
         
 
-        
+       
   </div>
 
- 
-
-</div>
 <div class="">
       <div class="card">
         <h3 class="">Comments</h3>
@@ -198,8 +198,9 @@
                 </div>
                 <% end %>
             </div>
-          <% end %>
             <hr>
+          <% end %>
+            
             <div class='container'>
                 <% if @comments.empty?%>
                   <p> There are no comments yet.</p>
@@ -224,5 +225,9 @@
           </div>
         </div>
       </div>
-    </div>
+</div>
+     <% else %>
+            <p> There's no such event.</p>
+        <% end %>
+</div>
 </div>

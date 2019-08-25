@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htmlp
   
   get '/organizations', to: 'homes#org', as: :org_root
+  post '/events', to: 'events#attend', as: :attend
 
   resources :organizations
   resources :users

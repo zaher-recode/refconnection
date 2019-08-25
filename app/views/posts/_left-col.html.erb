@@ -1,7 +1,7 @@
 <!-- Events Widget -->
 <% unless Event.all.empty? %>
     <div class="card ">
-    <h4 class="">Organizations<hr></h4>
+    <h4 class="">Events<hr></h4>
     <div class='org-item'>
         <% @events = Event.all.order("created_at DESC") %>
         <% @events[0..3].each do |event| %>
