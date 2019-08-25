@@ -6,7 +6,10 @@ gem "devise"
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
 gem 'simple_form'
+gem 'jquery-rails'
 
+gem 'bootstrap-sass'
+gem 'uglifier'
 gem 'image_processing'
 gem 'mini_magick'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

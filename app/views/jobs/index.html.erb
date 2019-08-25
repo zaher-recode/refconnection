@@ -1,8 +1,37 @@
-<h1 class="text-center header-primary mt-5">Jobs</h1>
+<div class='row main-col'>
+<div class='container col-sm-3'>
+</div>
+
+<div class='container col-md-6'>
+<strong><h2 class=" header-primary mt-4">Jobs</h2></strong>
+
+    <% if organization_signed_in? %>
+        <div class='card'>
+            <%= simple_form_for @job,:url => url_for(:action => 'create', :controller => 'jobs'),:method => 'post' do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <h4> Add New Job </h4>
+            <div class="form-inputs">
+                <%= f.input :title, label: false, placeholder:'Title' %>
+                <%= f.input :description, label: false, placeholder:'Description' %>
+                <%= f.input :position, label: false, placeholder:'Position'  %>
+                <%= f.input :address, label: false, placeholder:'Location'  %>
+                <%= f.input :salary, label: false, placeholder:'Salary'  %>
+                <%= f.file_field :images %>
+            </div>
+            <br>
+            <div class="form-actions text-right">
+                <%= f.button :submit %>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+
+
 <% if @jobs.empty? %>
-    <p> There are not jobs yet,</p>
+    <p class='text-center'> There are not jobs yet,</p>
 <%else%>
-<div class='container col-md-9'>
+<div class=''>
             <div id="cards">
                     <% (@jobs.length).times do |i| %>
                         <!-- Card Wider -->
@@ -21,7 +50,7 @@
                                 <!-- Text -->
                                 <p class="card-text g-color"><%=@jobs[i].description%></p>
                                 <br>
-                                <small class="blue-text pb-2"><strong>by : <%= link_to @jobs[i].user.username, user_path(@jobs[i].user)%> </strong></small>
+                                <small class="blue-text pb-2"><strong>by : <%= link_to @jobs[i].organization.company_name, organization_path(@jobs[i].organization)%> </strong></small>
                             </div>
                             <!-- Card footer -->
                             <div class="card-footer text-muted text-center">
@@ -36,5 +65,8 @@
 <% end %>
 
    
+    </div>
 
-<%= link_to "Add new post","/jobs/new",class:"btn btn-warning mx-4 my-4 btn-lg"  %>
+    <div class='container col-sm-3'>
+    </div>
+</div>

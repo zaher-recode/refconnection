@@ -9,7 +9,7 @@ class Post < ApplicationRecord
         unless self.rates_num == 0
         (self.rates_total / self.rates_num.to_f).round(1) 
         else
-          "No Ratings yet!"
+          0
         end
       end
     

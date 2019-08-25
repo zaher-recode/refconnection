@@ -21,8 +21,12 @@ Rails.application.routes.draw do
   resources :events
   resources :jobs
   resources :comments
-
-  resources :comments
+  resources :conversations, only: [:create,:index] do
+    member do
+      post :close
+    end
+    resources :messages, only: [:create]
+  end
 
   resources :reviews
 
