@@ -7,4 +7,13 @@ class Event < ApplicationRecord
 
     has_many_attached :images
 
+    searchkick word_start: [ :title, :description, :address]
+    
+    def search_data
+      {
+        title: title,
+        description: description,
+        address: address
+      }
+    end
 end

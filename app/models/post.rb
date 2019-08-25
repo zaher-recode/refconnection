@@ -5,13 +5,14 @@ class Post < ApplicationRecord
     has_many :reviews
     has_many :comments
 
-    searchkick word_start: [:title]
+    searchkick word_start: [ :title, :description]
     
     def search_data
       {
-      title: title
+        title: title,
+        description: description
       }
-  end
+    end
 
     def show_rating
         unless self.rates_num == 0
