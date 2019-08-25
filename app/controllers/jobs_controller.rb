@@ -1,12 +1,14 @@
 class JobsController < ApplicationController
-    before_action :authenticate_organization!, except: [:show, :index]
-    before_action :authenticate_user!, except: [:show, :index]
+    before_action :authenticate_organization!, except: [:show, :index]    
 
     def index
-        @jobs = Job.all
-        # if current_user
-        #     @mine = current_organization.jobs  
-        # end
+        @job = Job.new
+        if current_organization
+            @jobs = current_organization.jobs  
+        else
+            @jobs = Job.all.order('created_at DESC')
+        end
+
     end
 
     def new

@@ -1,16 +1,20 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :index]
+
     def index
-        @posts = Post.all.order("created_at DESC")
-            if current_user
-            @mine = current_user.posts
+        @post = Post.new
+        @categories = Category.all
+        @category= Category.find_by(name: params[:format])
+        if @category
+            @posts = Post.where(category_id: @category.id).order("created_at DESC")
+        else
+            @posts = Post.all.order("created_at DESC")
         end
     end
 
 
     def new
         @post = Post.new
-
     end
 
     def create
@@ -21,11 +25,12 @@ class PostsController < ApplicationController
     end
 
     def show
+        @user = current_user
         @review =Review.new
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
         @comment = Comment.new
-        @comments = @post.comments
+        @comments = @post.comments.order("created_at DESC")
     end
 
     def edit

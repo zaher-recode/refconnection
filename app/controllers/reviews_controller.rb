@@ -6,7 +6,7 @@ class ReviewsController < ApplicationController
         @review = Review.new
     end
     def create
-        puts "###################$$$$$$$$$$$$$$$$$$$$$$$$$"
+        # puts "###################$$$$$$$$$$$$$$$$$$$$$$$$$"
         @review =Review.create(review_params.merge( user_id: current_user.id))
         Post.find(@review.post_id).add_rating(@review.rating)
         redirect_to "/posts/#{@review.post_id}"

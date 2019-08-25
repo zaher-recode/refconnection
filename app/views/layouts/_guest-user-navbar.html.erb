@@ -2,19 +2,14 @@
 <% if !user_signed_in? && !organization_signed_in? %>
   <div class="navbar">
     <%# HEARDER OR LOGO %>
-    <%= render 'layouts/navbar-header'%>
+    <%=render 'layouts/navbar-header'%>
     <%# LEFT SIDE %>
-    
-    <div class="row text-left"> 
-        
-       <div class="searchbar">
-          <input class="search_input" type="text" name="" placeholder="Search...">
-          <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-        </div>
+    <div class="row text-left">
+        <%=render 'layouts/search-navbar'%>      
         <strong>
-        <%= link_to "<li>Sign up</li>".html_safe, new_user_registration_path, :class => ''  %>
-        <%= link_to "<li>Login</li>".html_safe, new_user_session_path, :class => ''  %>
-        <%= link_to "<li class='nav-box'>Organizations</li>".html_safe, org_root_path, :class => ''  %>
+          <%= link_to "<li>Sign up</li>".html_safe, new_user_registration_path, :class => ''  %>
+          <%= link_to "<li>Login</li>".html_safe, new_user_session_path, :class => ''  %>
+          <%= link_to "<li class='nav-box'>Organizations</li>".html_safe, org_root_path, :class => ''  %>
         </strong>
     </div>
   </div>

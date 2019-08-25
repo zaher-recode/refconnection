@@ -1,6 +1,8 @@
-<li class="">
-    <%= link_to current_organization.email, edit_organization_registration_path, :class => '' %> 
-</li>
-<li class="">
-    <%= link_to "Logout", destroy_organization_session_path, method: :delete, :class => ''  %>
-</li>
+<li class="dropdown nav-profile">
+        <a class="" data-toggle="dropdown"><i class='fas fa-user' style='padding-right:0.5rem;'></i><%= link_to current_organization.company_name.capitalize,organization_path(current_organization), class:' dropdown-toggle'  %></a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Edit Account', edit_organization_registration_path(current_organization) %></li>
+            <hr>
+            <li><%= link_to 'Logout', destroy_organization_session_path, method: :delete %></li>
+    </ul>
+</li> 

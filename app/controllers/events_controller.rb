@@ -1,9 +1,10 @@
 class EventsController < ApplicationController
     before_action :authenticate_organization!, except: [:show, :index]
-    before_action :authenticate_user!, except: [:show, :index]
+    # before_action :authenticate_user!, except: [:show, :index]
 
     def index
-        @events = Event.all
+        @events = Event.all.order('created_at DESC')
+        @event = Event.new
         # @mine = current_organization.events
     end
 
@@ -13,7 +14,7 @@ class EventsController < ApplicationController
 
     def create
         @event =Event.create(event_params.merge(organization_id: current_organization.id))
-        @event.images = params[:post][:images]
+        # @event.images = params[:post][:images]
         respond_to do |format|
             if @event.save
                 format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -32,10 +33,12 @@ class EventsController < ApplicationController
 
     def edit
         @event = Event.find(params[:id])
+        if @event.organization_id != current_organization.id
+            redirect_to event_path(@event), alert: "you don't have permision."
+        end
     end
 
     def update
-        @event = Event.find(params[:id])
         @event = Event.find(params[:id])
         if params[:event][:images]
             @event.images.attach(params[:event][:images])
