@@ -3,7 +3,16 @@ class Post < ApplicationRecord
     belongs_to :user
     belongs_to :category
     has_many :reviews
-    has_many :comments
+    has_many :comments, dependent: :destroy
+
+    searchkick word_start: [ :title, :description]
+    
+    def search_data
+      {
+        title: title,
+        description: description
+      }
+    end
 
     def show_rating
         unless self.rates_num == 0

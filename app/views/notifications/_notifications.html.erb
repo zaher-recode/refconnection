@@ -1,0 +1,50 @@
+ <style>
+ .badge{
+    padding: 3px 5px 2px;
+    position: absolute;
+    top: -3px;
+    right: -7px;
+    display: inline-block;
+    min-width: 10px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #ffffff;
+    line-height: 1;
+    vertical-align: baseline;
+    white-space: nowrap;
+    text-align: center;
+    border-radius: 10px;
+    background-color: #db5565;
+}
+li{
+        list-style: none;
+}
+ </style>
+ 
+ 
+ <div class="dropdown text-right">
+    <ul>
+    <li data-behavior= 'notifications' id="test">
+    <a class="far fa-bell g-color" href="#" role="button" id="dropdownMenuLink" data-behavior='notifications-link' data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    
+        <span class="badge badge-danger" data-behavior="unread-count"></span>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink" data-behavior='notification-items'>
+
+    </div>
+    </li>
+    </ul>
+</div>
+
+<!--
+ <li  data-behavior="notifications" data-notifications='<%= render template: "notifications/index", formats: [:json] %>'>
+          <a class="dropdown-toggle far fa-bell text-warning" data-behavior="notifications-link" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+         <span class="badge badge-danger" data-behavior="unread-count"></span>
+          </a>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenu1" data-behavior="notification-items">
+            <%# <a class="dropdown-item" href="#">Action</a> %>
+          
+         
+          </div>
+        </li>
+   -->

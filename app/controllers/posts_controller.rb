@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :index]
 
+
     def index
         @post = Post.new
         @categories = Category.all
@@ -20,7 +21,7 @@ class PostsController < ApplicationController
     def create
         
         @post =Post.create(post_params.merge(user_id: current_user.id))
-        # @post.images = params[:post][:images]
+        @post.images.attach(params[:post][:images])
         redirect_to action: "show", id: @post.id  
     end
 
@@ -65,7 +66,5 @@ class PostsController < ApplicationController
    def post_params
     params.require(:post).permit(:title,  :description, :category_id,:images)
    end  
-   def post_params
-    params.require(:post).permit(:title,  :description, :category_id,:images)
-   end  
+   
 end

@@ -10,10 +10,10 @@
 </div>
 <% end %>
 
-<% unless Event.all.empty? %>
+<% unless Organization.all.empty? %>
   <!-- Orgs Widget -->
   <div class="card ">
-    <h4 class="">Events<hr></h4>
+    <h4 class="">Organizations<hr></h4>
     <div class='org-item'>
       <% @orgs = Organization.all.order("created_at DESC") %>
       <% @orgs[0..3].each do |org| %>
