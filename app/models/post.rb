@@ -5,6 +5,14 @@ class Post < ApplicationRecord
     has_many :reviews
     has_many :comments
 
+    searchkick word_start: [:title]
+    
+    def search_data
+      {
+      title: title
+      }
+  end
+
     def show_rating
         unless self.rates_num == 0
         (self.rates_total / self.rates_num.to_f).round(1) 

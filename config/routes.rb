@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   
   get '/organizations', to: 'homes#org', as: :org_root
   post '/events', to: 'events#attend', as: :attend
-
+  get '/search' => 'users#search', :as => 'search_page'
   resources :organizations
   resources :users
   resources :posts

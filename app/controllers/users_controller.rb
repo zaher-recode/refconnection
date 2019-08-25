@@ -1,4 +1,22 @@
 class UsersController < ApplicationController
+
+    # FOR SEARCHKICK
+    def search  
+        if params[:search].blank?  
+          redirect_to(root_path, alert: "Empty field!") and return  
+        elsif Post.all.empty?
+          redirect_to(root_path, alert: "Empty DB!") and return  
+        else  
+            search = params[:search].present? ? params[:search] : nil
+            @search_text = params[:search]
+            @search_result = if search
+                Post.search(search)
+            else
+                nil
+            end
+        end
+    end 
+
     def index
     end
 
