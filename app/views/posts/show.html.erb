@@ -161,10 +161,8 @@
                           <small class="text-dark">Reviewed:  <%= time_ago_in_words(@reviews[i].created_at) %></small>
                           <% end %>
                         </div>
-                        <hr>
                       </div>
                 <% end %>
-              <% end %>
           </div>
                   
            
@@ -205,7 +203,7 @@
             <div class='container'>
                 <% if @comments.empty?%>
                   <p> There are no comments yet.</p>
-                <%else%>
+                  <%else%>
                     <%(@comments.length).times do |i|%>
                       <% if @comments[i].user == current_user %>
                         <div class="dropdown text-right">
@@ -221,8 +219,7 @@
                       <h6 class='g-color'>     By : <%= @comments[i].user.username %></h6>
                       <small class="text-dark">Commented :  <%= time_ago_in_words(@comments[i].created_at) %></small>
                       <hr>
-                     <% end %>
-                  <% end %>
+                      <% end %>
                 <% end %>
           </div>
         </div>

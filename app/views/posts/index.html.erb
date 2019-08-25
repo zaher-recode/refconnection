@@ -50,7 +50,7 @@
                                     <!-- Card content -->
                                     <div class="card-body card-body-cascade text-left">
                                         <!-- Title -->
-                                        <h3 class="main-color"><strong><%=@posts[i].title%></strong></h3>
+                                        <h3 class="main-color"><strong><%= link_to @posts[i].title, post_path(@posts[i])%></strong></h3>
                                         <!-- Text -->
                                         <p class="card-text"><%=@posts[i].description%></p>
                                     </div>
