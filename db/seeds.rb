@@ -10,6 +10,29 @@ Category.create([
     {name: "Teaching Services"},
     {name: "Freelance Services"}
     ])
+
+Industry.create([
+    {name: "Accounting"},
+    {name: "Aeorspace"},
+    {name: "Agriculture"},
+    {name: "Computer"},
+    {name: "Construction"},
+    {name: "Education"},
+    {name: "Electronics"},
+    {name: "Energy"},
+    {name: "Entertainment"},
+    {name: "Food"},
+    {name: "Healthcare"},
+    {name: "Hospitality"},
+    {name: "Manufacturing"},
+    {name: "Music"},
+    {name: "Mining"},
+    {name: "News Media"},
+    {name: "Pharmaceutical"},
+    {name: "Telecommunication"},
+    {name: "Transport"},
+    {name: "Worldwide Web"}
+    ])
     
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_21_062710) do
+ActiveRecord::Schema.define(version: 2019_08_23_231617) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,26 @@ ActiveRecord::Schema.define(version: 2019_08_21_062710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "experiences", force: :cascade do |t|
+    t.string "title"
+    t.string "company"
+    t.string "location"
+    t.boolean "current_working_role", default: false
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "industry_id"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+  end
+
+  create_table "industries", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "jobs", force: :cascade do |t|
     t.integer "organization_id"
     t.string "title"
@@ -115,6 +135,11 @@ ActiveRecord::Schema.define(version: 2019_08_21_062710) do
     t.text "text"
     t.integer "user_id"
     t.integer "post_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "skills", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
