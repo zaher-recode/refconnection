@@ -1,26 +1,32 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!, except: [:show, :index]
+
+
     def index
-        @posts = Post.all.order("created_at DESC")
-            if current_user
-            @mine = current_user.posts
+        @post = Post.new
+        @categories = Category.all
+        @category= Category.find_by(name: params[:format])
+        if @category
+            @posts = Post.where(category_id: @category.id).order("created_at DESC")
+        else
+            @posts = Post.all.order("created_at DESC")
         end
     end
 
 
     def new
         @post = Post.new
-
     end
 
     def create
         
         @post =Post.create(post_params.merge(user_id: current_user.id))
-        # @post.images = params[:post][:images]
+        @post.images.attach(params[:post][:images])
         redirect_to action: "show", id: @post.id  
     end
 
     def show
+        @user = current_user
         @review =Review.new
         @post = Post.find(params[:id])
         @reviews = Review.where(post_id: @post.id).order("created_at DESC")
@@ -60,7 +66,5 @@ class PostsController < ApplicationController
    def post_params
     params.require(:post).permit(:title,  :description, :category_id,:images)
    end  
-   def post_params
-    params.require(:post).permit(:title,  :description, :category_id,:images)
-   end  
+   
 end

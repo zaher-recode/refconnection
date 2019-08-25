@@ -11,7 +11,7 @@ class Message < ApplicationRecord
   private
 
     def recipient
-        self.conversation.sender        
+        self.conversation.opposed_user(actor)        
     end
 
     def actor
@@ -24,9 +24,8 @@ class Message < ApplicationRecord
         # Notification.create(recipient: recipient, maker: self.user,
         #     action: 'commented', notifiable: self)
         # end
-        if recipient != actor
           Notification.create(recipient: recipient, actor: actor, action: 'messaged', notifiable: self)
-        end
+        
     end
 
 end

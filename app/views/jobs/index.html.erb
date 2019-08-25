@@ -1,40 +1,76 @@
-<h1 class="text-center header-primary mt-5">Jobs</h1>
+<div class='row main-col'>
+<div class='container col-sm-3'>
+</div>
+
+<div class='container col-md-6'>
+<strong><h2 class=" header-primary mt-4">Jobs</h2></strong>
+
+    <% if organization_signed_in? %>
+        <div class='card'>
+            <%= simple_form_for @job,:url => url_for(:action => 'create', :controller => 'jobs'),:method => 'post' do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+            <h4> Add New Job </h4>
+            <div class="form-inputs">
+                <%= f.input :title, label: false, placeholder:'Title' %>
+                <%= f.input :description, label: false, placeholder:'Description' %>
+                <%= f.input :position, label: false, placeholder:'Position'  %>
+                <%= f.input :address, label: false, placeholder:'Location'  %>
+                <%= f.input :salary, label: false, placeholder:'Salary'  %>
+                <%= f.file_field :images %>
+            </div>
+            <br>
+            <div class="form-actions text-right">
+                <%= f.button :submit %>
+            </div>
+            <% end %>
+        </div>
+    <% end %>
+
+
 <% if @jobs.empty? %>
     <p> There are not jobs yet,</p>
 <%else%>
-<div class='container col-md-9'>
             <div id="cards">
                     <% (@jobs.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
-                            <!-- Card image -->
-                            <div class="view view-cascade overlay">
-                                <%= link_to(image_tag(url_for(@jobs[i].images.first),class:"card-img-top"), post_path(@jobs[i])) %>
-                                <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                                </a>
+                            <div class="container row">
+                                <div><h4><strong class='main-color'><%= link_to @jobs[i].organization.company_name, user_path(@jobs[i].organization)%></strong></h4></div>
+                                <div class='time'><span class="g-color">• <%= time_ago_in_words(@jobs[i].updated_at)%> ago</span></div>
                             </div>
-                            <!-- Card content -->
-                            <div class="card-body card-body-cascade text-left">
-                                <!-- Title -->
-                                <h4 class="card-title"><strong><%=@jobs[i].title%></strong></h4>
-                                <!-- Text -->
-                                <p class="card-text g-color"><%=@jobs[i].description%></p>
-                                <br>
-                                <small class="blue-text pb-2"><strong>by : <%= link_to @jobs[i].user.username, user_path(@jobs[i].user)%> </strong></small>
-                            </div>
+                                <% if @jobs[i].images.attached? %>
+                                    <!-- Card image -->
+                                    <div class="view view-cascade overlay">
+                                        <%= link_to(image_tag(url_for(@jobs[i].images.first),class:"card-img-top",style:'back'), post_path(@jobs[i])) %>
+                                    </div>
+                                <% end %>
+                                    <!-- Card content -->
+                                    <div class="card-body card-body-cascade text-left">
+                                        <!-- Title -->
+                                        <h3 class="main-color"><strong><%= link_to @jobs[i].title, post_path(@jobs[i])%></strong></h3>
+                                        <!-- Text -->
+                                        <p class="card-text"><%=@jobs[i].description%></p>
+                                    </div>
+                            <hr>
+                            <div class=''><button type="button" class="attend-btn"><strong>APPLY</strong></button></div>
+
                             <!-- Card footer -->
-                            <div class="card-footer text-muted text-center">
-                                <small class="g-color">Last updated:  <%= time_ago_in_words(@jobs[i].updated_at) %></small>
-                            </div>
-                            </div>
+                            <%# <div class="container row"> %>
+                                <%# <div class='card-footer-comments'><%= link_to "<strong class='far fa-comment g-color post-footer-text'> #{@jobs[i].comments.size} </strong>".html_safe , post_path(@jobs[i]) %> 
+                                <%# <div class='card-footer-rates'><%= link_to "<strong class='fas fa-star g-color post-footer-text'> #{@jobs[i].show_rating} </strong>".html_safe , post_path(@jobs[i]) %> 
+                            <%# </div> %>
+                            <%# </div> %>
                             <!-- Card Wider -->
                     <% end %>
                             
-                        </div>
+            </div>
                 </div>
 <% end %>
 
    
+    </div>
 
-<%= link_to "Add new post","/jobs/new",class:"btn btn-warning mx-4 my-4 btn-lg"  %>
+    <div class='container col-sm-3'>
+    </div>
+</div>

@@ -2,6 +2,7 @@ class Comment < ApplicationRecord
     after_create :create_notifications
 
     belongs_to :user
+    # belongs_to :event
     belongs_to :post
     has_many :users, through: :post
 

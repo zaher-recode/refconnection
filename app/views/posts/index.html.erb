@@ -1,13 +1,34 @@
-
 <div class='row main-col'>
-<div class='container col-sm-3'>
+<div class='container col-sm-3 mt-2' style='padding-right: 0;'>
+    <div class=''>
+        <%= render 'posts/left-col'%>    
+    </div>
 </div>
 
 <div class='container col-md-6'>
-<strong><h2 class=" header-primary mt-4">Posts</h2></strong>
+<%# <strong><h2 class=" header-primary mt-4">Posts</h2></strong> %>
+
 <% if user_signed_in? %>
-<%= link_to "Add new post","/posts/new",class:"btn btn-warning mx-4 my-4 btn-lg"  %>
+    <div class='card'>
+
+    <%= simple_form_for @post,:url => url_for(:action => 'create', :controller => 'posts'),:method => 'post' do |f| %>
+    <%= f.error_notification %>
+    <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+    <h4 class="card-title"> Add New Post </h4>
+    <div class="form-inputs">
+        <%= f.input :title, label: false, placeholder:'Title' %>
+        <%= f.input :description, label: false, placeholder:'Description' %>
+        <%= f.association :category, prompt: "Select Category", input_html: { class: "form-control center" }, label: false%>
+        <%= f.file_field :images, multiple: true%>
+    </div>
+    <div class="form-actions text-right">
+        <%= f.button :submit %>
+    </div>
+    <% end %>
+    </div>
+
 <% end %>
+
 
 <% if @posts.empty? %>
     <p> There are not posts yet,</p>
@@ -16,28 +37,39 @@
                     <% (@posts.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
-                            <div class="text-muted">
-                                <h4><strong><%= link_to @posts[i].user.username, user_path(@posts[i].user), class:'main-color'%></strong></h4>
-                                <p class="g-color">updated at: <%= time_ago_in_words(@posts[i].updated_at) %> ago</p>
+                            <div class="container row">
+                                <div><h4><strong class='main-color'><%= link_to @posts[i].user.username, user_path(@posts[i].user)%></strong></h4></div>
+                                <div class='time'><span class="g-color">• <%= time_ago_in_words(@posts[i].updated_at)%> ago</span></div>
                             </div>
                                 <% if @posts[i].images.attached? %>
                                     <!-- Card image -->
-                                    <div class="view view-cascade overlay">
-                                        <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top"), post_path(@posts[i])) %>
+                                    <%# <div class="view view-cascade overlay"> %>
+                                    <div class="card-image-box" style=''>
+                                        <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top",style:'back'), post_path(@posts[i])) %>
                                     </div>
+                                 <% else %>
+                                    <%if @posts[i].category.id == 1 %>
+                                        <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Maintenance+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+                                    <%elsif @posts[i].category.id == 2 %>
+                                        <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Teaching+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+                                    <%elsif @posts[i].category.id == 3 %>
+                                       <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Freelance+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+  
+
+                                    <% end %>                                
                                 <% end %>
                                     <!-- Card content -->
                                     <div class="card-body card-body-cascade text-left">
                                         <!-- Title -->
-                                        <h4 class="card-title"><strong><%=@posts[i].title%></strong></h4>
+                                        <h3 class="main-color"><strong><%= link_to @posts[i].title, post_path(@posts[i])%></strong></h3>
                                         <!-- Text -->
-                                        <h5 class="card-text"><%=@posts[i].description%></h5>
+                                        <p class="card-text"><%=@posts[i].description%></p>
                                     </div>
-                                
+                            <hr>
                             <!-- Card footer -->
-                            <div class="card-footer text-muted row">
-                                <div class='card-footer-comments'><i class="far fa-comment g-color"></i><strong class='post-footer-text'><%=@posts[i].comments.size%></strong></div>
-                                <div class='card-footer-rates'><i class="fas fa-star g-color"></i><strong class='post-footer-text'><%=@posts[i].show_rating%></strong></div>
+                            <div class="container row">
+                                <div class='card-footer-comments'><%= link_to "<strong class='far fa-comment g-color post-footer-text'> #{@posts[i].comments.size} </strong>".html_safe , post_path(@posts[i]) %> </div>
+                                <div class='card-footer-rates'><%= link_to "<strong class='fas fa-star g-color post-footer-text'> #{@posts[i].show_rating} </strong>".html_safe , post_path(@posts[i]) %> </div>
                             </div>
                             </div>
                             <!-- Card Wider -->
@@ -46,7 +78,10 @@
             </div>
                 </div>
 <% end %>
-<div class='container col-md-3 mt-4' style='padding-left: 0; padding-top: 1.8rem;'>
-        <%= render 'posts/search-cat'%>    
+<div class='container col-md-3 mt-2' style='padding-left: 0;'>
+    <div class='right-col'>
+        <%= render 'posts/right-col'%>    
+    </div>
 </div>
 </div>
+

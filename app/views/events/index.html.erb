@@ -1,36 +1,66 @@
+<div class='row main-col'>
+<div class='container col-sm-3'>
+</div>
+
+<div class='container col-md-6'>
 <h1 class="text-center header-primary mt-5">Events</h1>
+
+<% if organization_signed_in? %>
+    <div class='card'>
+
+        <%= simple_form_for @event,:url => url_for(:action => 'create', :controller => 'events'),:method => 'post' do |f| %>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <h4> Add New Post </h4>
+        <div class="form-inputs">
+            <%= f.input :title,label: false, placeholder:'Title' %>
+            <%= f.input :description,label: false, placeholder:'Description' %>
+            <%= f.input :address,label: false, placeholder:'Address' %>
+            <%= f.input :start_date %>
+            <%= f.input :end_date,label: false%>
+            <%= f.file_field :images %>
+        </div>
+        <div class="form-actions text-right">
+            <%= f.button :submit %>
+        </div>
+        <% end %>
+
+    </div>
+<% end %>
+
 <% if @events.empty? %>
     <p> There are not events yet,</p>
 <%else%>
-<div class='container col-md-6'>
+<div class=''>
             <div id="cards">
                     <% (@events.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
-                            <div class="text-muted">
-                                <h4><strong><%= link_to @events[i].organization.company_name, user_path(@events[i].organization), class:'main-color'%></strong></h4>
-                                <p class="g-color">updated at: <%= time_ago_in_words(@events[i].updated_at) %> ago</p>
+                            <div class="container row">
+                                <div><h4><strong><%= link_to @events[i].organization.company_name, organization_path(@events[i].organization), class:'main-color'%></strong></h4></div>
+                                <div class='time'><span class="g-color">• <%= time_ago_in_words(@events[i].updated_at)%> ago</span></div>
                             </div>
-                                <% if @events[i].images.attached? %>
-                                    <!-- Card image -->
-                                    <div class="view view-cascade overlay">
-                                        <%= link_to(image_tag(url_for(@events[i].images.first),class:"card-img-top"), event_path(@events[i])) %>
-                                    </div>
-                                <% end %>
-                                    <!-- Card content -->
-                                    <div class="card-body card-body-cascade text-left">
-                                        <!-- Title -->
-                                        <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
-                                        <!-- Text -->
-                                        <h5 class="card-text"><%=@events[i].description%></h5>
-                                    </div>
-                                
+                            <!-- IMAGES -->
+                            <% if @events[i].images.attached? %>
+                                <!-- Card image -->
+                                <div class="card-img-box">
+                                    <%= link_to(image_tag(url_for(@events[i].images.first),class:"card-img-top"), event_path(@events[i])) %>
+                                </div>
+                            <% end %>
+                             <!-- Card content -->
+                            <div class="card-body card-body-cascade text-left">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
+                                <!-- Text -->
+                                <p class="card-text"><%=@events[i].description%></p>
+                            </div>
+                            <div class=''><button type="button" class="attend-btn"><strong>ATTEND</strong></button></div>
+
+                            <hr> 
                             <!-- Card footer -->
-                            <%# <div class="card-footer text-muted row"> %>
-                                <%# <div class='card-footer-comments'><i class="far fa-comment g-color"></i> %>
-                                <%#<strong class='event-footer-text'><%#@events[i].comments.size%>
-                                <%# </div> %>
-                            <%# </div> %>
+                            <div class="container row">
+                                <div class='card-footer-comments'><%= link_to "<strong class='far fa-calendar-check g-color post-footer-text'> #{@events[i].attendees.size} </strong>".html_safe , event_path(@events[i]) %> </div>
+                            </div>
                             </div>
                             <!-- Card Wider -->
                     <% end %>
@@ -38,3 +68,9 @@
                         </div>
                 </div>
 <% end %>
+
+
+</div>
+<div class='container col-sm-3'>
+</div>
+</div>

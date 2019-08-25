@@ -5,11 +5,20 @@ class Post < ApplicationRecord
     has_many :reviews
     has_many :comments, dependent: :destroy
 
+    searchkick word_start: [ :title, :description]
+    
+    def search_data
+      {
+        title: title,
+        description: description
+      }
+    end
+
     def show_rating
         unless self.rates_num == 0
         (self.rates_total / self.rates_num.to_f).round(1) 
         else
-          "No Ratings yet!"
+          0
         end
       end
     

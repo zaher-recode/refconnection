@@ -12,12 +12,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   </head>
   <body>
-<% if notice %>
-  <p class="alert alert-success"><%= notice %></p>
-<% end %>
-<% if alert %>
-  <p class="alert alert-danger"><%= alert %></p>
-<% end %>
 
 <!-- Navigation -->
 <% if user_signed_in? || organization_signed_in? %>
@@ -25,21 +19,32 @@
     <%# HEARDER OR LOGO %>
     <%= render 'layouts/navbar-header'%>
     <%# LEFT SIDE %>
-    <div> 
-    <strong>
-      <ul class="text-right">
-        <%= render 'layouts/add-navbar'%>
+    <div class="row text-left"> 
       <% if user_signed_in? %>
-      <% @user = current_user %>
+        <%=render 'layouts/search-navbar'%> 
+      <% end %> 
+    <strong>
+      <% if user_signed_in? %>
+        <% @user = current_user %>
+        <%= render 'layouts/user-add-navbar'%>
         <%= render 'layouts/user-navbar' %>
       <% elsif organization_signed_in? %>
+        <%= render 'layouts/org-add-navbar'%>
         <%= render 'layouts/org-navbar' %>
       <% end %>
       </strong>
-      </ul>
     </div>
   </div>
+<% else %>
+  <% unless current_page?(org_root_path) || current_page?(new_organization_session_path) || current_page?(new_organization_registration_path)%>
+      <%= render 'layouts/guest-user-navbar'%>
+      <% else %>
+        <!-- Navigation -->
+      <%= render 'layouts/guest-org-navbar'%>
+  <% end  %>
+
 <% end %>
+
 
 
 
