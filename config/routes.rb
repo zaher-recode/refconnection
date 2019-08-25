@@ -18,6 +18,17 @@ Rails.application.routes.draw do
   resources :organizations
   resources :users
   resources :posts
+  # resources :posts do
+  #   resources :reviews
+    # resources :comments
+
+  # end
+
+  resources :notifications do
+    collection do
+      post :mark_read
+    end
+  end
   resources :events
   resources :jobs
   resources :comments
