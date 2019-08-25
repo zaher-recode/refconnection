@@ -11,7 +11,7 @@ class Message < ApplicationRecord
   private
 
     def recipient
-        self.conversation.recipient        
+        self.conversation.sender        
     end
 
     def actor
