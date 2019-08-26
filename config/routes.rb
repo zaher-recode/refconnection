@@ -24,12 +24,11 @@ Rails.application.routes.draw do
     # resources :comments
 
   # end
+  post '/notifications/read/:id', to: 'notifications#read'
 
-  resources :notifications do
-    collection do
-      post :mark_read
-    end
-  end
+  resources :notifications
+      # post :mark_read
+      
   resources :events
   resources :jobs
   resources :comments

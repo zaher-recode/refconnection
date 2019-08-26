@@ -10,4 +10,10 @@ class NotificationsController < ApplicationController
         @notifications.update_all(read_at: Time.zone.now)
         render json: {success: true}
     end
+
+    def read
+        @notification = Notification.find(params[:id])
+        @notification.update(read_at: Time.zone.now)
+        render json: {success: true}
+    end
 end
