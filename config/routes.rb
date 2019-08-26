@@ -28,9 +28,11 @@ Rails.application.routes.draw do
 
   resources :notifications
       # post :mark_read
-      
-  resources :events
-    post '/events', to: 'events#attend', as: :attend
+  post '/attendees/new/:id', to: 'events#attend', as: :attend
+  post '/attendees/del/:id', to: 'events#unattend', as: :unattend
+
+  resources :events do
+  end
 
   resources :jobs
   resources :comments
