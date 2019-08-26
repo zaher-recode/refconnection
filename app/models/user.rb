@@ -4,6 +4,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :attendees
   has_many :events, :through => :attendees
+
+  has_many :skills
+  has_many :experiences
+  has_many :industries, :through => :experiences
+
+  has_many :messages
+  has_many :conversations, foreign_key: :sender_id
+
   has_many :messages, dependent: :destroy
   has_many :conversations, foreign_key: :sender_id
   has_many :notifications, foreign_key: :recipient_id
