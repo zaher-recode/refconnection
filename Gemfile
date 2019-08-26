@@ -12,6 +12,11 @@ gem 'bootstrap-sass'
 gem 'uglifier'
 gem 'image_processing'
 gem 'mini_magick'
+
+gem 'omniauth-facebook'
+
+# Development ENV Variables
+gem 'figaro'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.0.rc2'
 # Use pg as the database for Active Record
