@@ -8,12 +8,20 @@
     </div>
     <% else %>
     <div class= 'text-center'><h6 class='g-color'>search result for :<strong class='main-color'> <%=@search_text %><strong></h6></div>
+            <% if !@search_users.empty?  %>
+            <div class="card">
+                <h6>User<hr></h6>
+                <% @search_users.each do |user| %>
+                    <p><%= link_to user.username, user_path(user)%></p>
+                <% end %>
+            </div>
+            <% end %>
 
             <% if !@search_orgs.empty?  %>
             <div class="card">
                 <h6>Organizations<hr></h6>
                 <% @search_orgs.each do |org| %>
-                    <p><%= org.company_name%></p>
+                    <p><%= link_to org.company_name, organization_path(org)%></p>
                 <% end %>
             </div>
             <% end %>
