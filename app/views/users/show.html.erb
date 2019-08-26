@@ -3,8 +3,6 @@
 
 <%# Review Book %>
   <div class="col-md-9">
-          <%= render "notifications/notifications" %>
-
       <% if @user_posts.empty? %>
         <p> There are not user_posts yet,</p>
         <%else%>
@@ -74,7 +72,7 @@
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li>
-							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Setting".html_safe, edit_user_registration_path(@user)%>
+							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Settings".html_safe, edit_user_registration_path(@user)%>
 						</li>
 					</ul>
 				</div>

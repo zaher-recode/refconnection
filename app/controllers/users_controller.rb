@@ -14,6 +14,7 @@ class UsersController < ApplicationController
                 @search_events = Event.search(search)
                 @search_jobs = Job.search(search)
                 @search_orgs = Organization.search(search)
+                @search_users = User.search(search)
             else
                 nil
             end

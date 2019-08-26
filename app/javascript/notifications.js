@@ -42,7 +42,7 @@ x.addEventListener("click",function(e){
   }
 
 });
-
+ 
 
 // $("[data-behavior='note']").click(function(e){
 //   alert(22);
@@ -58,6 +58,6 @@ x.addEventListener("click",function(e){
 // })
 
 
-// setInterval(function(){new Notifications; }, 1000);
+setInterval(function(){new Notifications; }, 3000);
  
- new Notifications
+//  new Notifications
