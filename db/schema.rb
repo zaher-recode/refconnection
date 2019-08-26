@@ -10,9 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_08_24_085512) do
->>>>>>> c537e021eca1cb2190892139269ee56fd6ea9ab5
-=======
+ActiveRecord::Schema.define(version: 2019_08_25_222422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +119,17 @@ ActiveRecord::Schema.define(version: 2019_08_24_085512) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "notifications", force: :cascade do |t|
+    t.integer "recipient_id"
+    t.integer "actor_id"
+    t.datetime "read_at"
+    t.string "action"
+    t.integer "notifiable_id"
+    t.string "notifiable_type"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "organizations", force: :cascade do |t|
     t.string "company_name"
     t.string "address"
@@ -164,6 +173,8 @@ ActiveRecord::Schema.define(version: 2019_08_24_085512) do
   create_table "skills", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "name"
+    t.integer "user_id"
   end
 
   create_table "users", force: :cascade do |t|

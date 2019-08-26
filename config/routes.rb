@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   resources :organizations
   resources :users
   resources :posts
+  resources :experiences
   # resources :posts do
   #   resources :reviews
     # resources :comments
