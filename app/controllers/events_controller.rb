@@ -2,20 +2,20 @@ class EventsController < ApplicationController
     before_action :authenticate_organization!, except: [:show, :index,:attend]
     # before_action :authenticate_user!, except: [:show, :index]
 
-    # def attend
-    #     # byebug
-    #     @event = Event.find_by(id: params[:event_id] )
-    #     @attend = Attendee.new(user_id: params[:user_id], event_id: @event.id)
-    #     respond_to do |format|
-    #         if @attend.save
-    #             format.html { redirect_to @event, notice: "You are attending to #{@event.title}" }
-    #             format.json { render :show, status: :created, location: @event }
-    #         else
-    #             format.html { render :show }
-    #             format.json { render json: @event.errors, status: :unprocessable_entity }
-    #         end
-    #     end
-    # end
+    def attend
+        # byebug
+        @event = Event.find_by(id: params[:event_id] )
+        # @attend = Attendee.new(user_id: params[:user_id], event_id: @event.id)
+        # respond_to do |format|
+            # if @attend.save
+            #     format.html { redirect_to @event, notice: "You are attending to #{@event.title}" }
+            #     format.json { render :show, status: :created, location: @event }
+            # else
+            #     format.html { render :show }
+            #     format.json { render json: @event.errors, status: :unprocessable_entity }
+            # end
+        # end
+    end
 
     # def attend?
     #     @event = Event.find_by(id:params[:id] )
@@ -44,7 +44,7 @@ class EventsController < ApplicationController
 
     def create
         @event =Event.create(event_params.merge(organization_id: current_organization.id))
-        # @event.images = params[:post][:images]
+        @event.images.attach(params[:event][:images])
         respond_to do |format|
             if @event.save
                 format.html { redirect_to @event, notice: 'Event was successfully created.' }
@@ -59,8 +59,8 @@ class EventsController < ApplicationController
    
     def show
         @event = Event.find(params[:id])
-        @comment = Comment.new
-        @comments = @event.comments.order("created_at DESC")
+        # @comment = Comment.new
+        # @comments = @event.comments.order("created_at DESC")
     end
 
     def edit

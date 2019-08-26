@@ -15,10 +15,12 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("jquery")
-require("notifications")
+// require("notifications")
 
 
 import 'bootstrap';
+import "./all";
+import "./notifications";
 
 
 (function() {
