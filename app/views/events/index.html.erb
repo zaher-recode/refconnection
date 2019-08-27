@@ -1,9 +1,12 @@
 <div class='row main-col'>
 <div class='container col-sm-3'>
+    <div class=''>
+        <%= render 'posts/left-col'%>    
+    </div>
 </div>
 
 <div class='container col-md-6'>
-<h1 class="text-center header-primary mt-5">Events</h1>
+<strong><h2 class=" header-primary mt-4">Events</h2></strong>
 
 <% if organization_signed_in? %>
     <div class='card'>
@@ -50,12 +53,21 @@
                              <!-- Card content -->
                             <div class="card-body card-body-cascade text-left">
                                 <!-- Title -->
-                                <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
+                                <h4 class="card-title"><strong><%= link_to @events[i].title, event_path(@events[i])%></strong></h4>
                                 <!-- Text -->
                                 <p class="card-text"><%=@events[i].description%></p>
                             </div>
-                            <div class=''><button type="button" class="attend-btn"><strong>ATTEND</strong></button></div>
+                            <% if current_user  %>
+                                <% if @events[i].attendees.where(user: current_user).any?  %>
+                                <%# CHANGE COLOR MAYBE TO GREED FOR THE BELOW BTN %>
+                                <strong><%= link_to 'Attending',"/attendees/del/#{@events[i].id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
+                                <p><%= @event.attendees.count %> <%= (@events[i].attendees.count) == 1 ? 'attendee' : 'attendees'%></p>
+                                <%else%>
+                                <strong><%= link_to 'ATTEND',"/attendees/new/#{@events[i].id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
+                                <p><%= @events[i].attendees.count %> <%= (@events[i].attendees.count) == 1 ? 'attend' : 'attendees'%></p>
+                                <% end %>
 
+                            <% end  %>
                             <hr> 
                             <!-- Card footer -->
                             <div class="container row">
@@ -72,5 +84,8 @@
 
 </div>
 <div class='container col-sm-3'>
+<div class='right-col'>
+        <%= render 'posts/right-col'%>    
+    </div>
 </div>
 </div>

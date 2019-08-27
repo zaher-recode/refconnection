@@ -1,0 +1,55 @@
+<div class="container mt-5">
+    <div class="row">
+
+<%# Review Book %>
+    <div class="col-md-9">
+      
+    </div>
+
+        <div class="col-md-3">
+        <div class='profile card'>
+			<div class="profile-sidebar">
+				<!-- SIDEBAR USERPIC -->
+				<div class="profile-userpic">
+				 <% if !@organization.image.attached? %>
+                    <%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100px;'%>
+                    <% else %>
+                    <%= image_tag @organization.image, class:'avatar text-center',style:'width:100%;'%>
+                    <% end %>
+				</div>
+				<!-- END SIDEBAR organizationPIC -->
+				<!-- SIDEBAR organization TITLE -->
+				<div class="profile-usertitle">
+					<div class="profile-usertitle-name">
+						<%= @organization.company_name.capitalize %> 
+					</div>
+					<%# <div class="profile-usertitle-job">
+						Developer
+					</div> %>
+				</div>
+				<!-- END SIDEBAR organization TITLE -->
+				<!-- SIDEBAR BUTTONS -->
+				<div class="profile-userbuttons">
+					<%# <button type="button" class="btn btn-success btn-sm">Follow</button> %>
+                    <%#link_to "Message", conversations_path(user_id: @organization), class: "btn btn-danger btn-sm" %>
+
+				</div>
+				<!-- END SIDEBAR BUTTONS -->
+				<!-- SIDEBAR MENU -->
+				<div class="profile-usermenu">
+					<ul class="nav">
+						<li>
+							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Settings".html_safe, edit_organization_registration_path(@organization)%>
+						</li>
+					</ul>
+				</div>
+				<!-- END MENU -->
+			</div>
+		</div>
+		</div>
+
+
+  
+
+    </div>
+</div>

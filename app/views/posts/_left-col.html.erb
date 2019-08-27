@@ -3,10 +3,18 @@
     <div class="card ">
     <h4 class="">Events<hr></h4>
     <div class='org-item'>
-        <% @events = Event.all.order("created_at DESC") %>
+        <% @events = Event.all.order("start_date DESC") %>
         <% @events[0..3].each do |event| %>
         <li>
+            <div class="show-info">
+                <% unless event.start_date == event.end_date %>
+                    <h5> Date : <%= event.start_date%> to <%= event.end_date%> <h5>
+                <% else %>
+                    <h5> Date :  <%= event.start_date%> <h5>
+                <% end %>
+            </div>
             <strong class='main-color'><%= link_to event.title, event_path(event) %></strong>
+            <p class='g-color'><%= event.organization.description %></p>
             <p class='g-color'>by: <%= event.organization.company_name %></p>
         </li>
         <hr>

@@ -10,6 +10,14 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <% if !current_organization.image.attached? %>
+      <%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:80%;'%>
+    <% else %>
+      <%= image_tag current_organization.image, class:'avatar text-center',style:'width:80%;'%>
+    <% end %>
+    <br>
+    <p class='fg-color'>Avatar: <%= f.file_field :image %></p>
+
     <%= f.input :email, required: true, autofocus: true %>
 
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -23,6 +31,10 @@
                 hint: "What is your new company name?",
                 required: false,
                 input_html: { autocomplete: "company_name" } %>
+    <%= f.input :description,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Description" }%>
     <%= f.input :organizer,
                 hint: "Have you quitted organizing",
                 required: false,

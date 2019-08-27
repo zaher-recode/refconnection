@@ -11,25 +11,37 @@
                     <% (@user_posts.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
-                            <!-- Card image -->
-                            <div class="view view-cascade overlay">
-                                <%= link_to(image_tag(url_for(@user_posts[i].images.first),class:"card-img-top"), post_path(@user_posts[i])) %>
-                                <a href="#!">
-                                <div class="mask rgba-white-slight"></div>
-                                </a>
+                            <div class="container row">
+                                <div><h4><strong class='main-color'><%= link_to @user_posts[i].user.username, user_path(@user_posts[i].user)%></strong></h4></div>
+                                <div class='time'><span class="g-color">• <%= time_ago_in_words(@user_posts[i].updated_at)%> ago</span></div>
                             </div>
-                            <!-- Card content -->
-                            <div class="card-body card-body-cascade text-left">
-                                <!-- Title -->
-                                <h4 class="card-title"><strong><%=@user_posts[i].title%></strong></h4>
-                                <!-- Text -->
-                                <p class="card-text g-color"><%=@user_posts[i].description%></p>
-                                <br>
-                                <small class="blue-text pb-2"><strong>by : <%= link_to @user_posts[i].user.username, user_path(@user_posts[i].user)%> </strong></small>
-                            </div>
+                                <% if @user_posts[i].images.attached? %>
+                                        <!-- Card image -->
+                                        <%# <div class="view view-cascade overlay"> %>
+                                        <div class="card-image-box" style=''>
+                                            <%= link_to(image_tag(url_for(@user_posts[i].images.first),class:"card-img-top",style:'back'), post_path(@user_posts[i])) %>
+                                        </div>
+                                 <% else %>
+                                        <%if @user_posts[i].category.id == 1 %>
+                                            <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Maintenance+Services",class:"card-img-top",style:'back'), post_path(@user_posts[i])) %>
+                                        <%elsif @user_posts[i].category.id == 2 %>
+                                            <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Teaching+Services",class:"card-img-top",style:'back'), post_path(@user_posts[i])) %>
+                                        <%elsif @user_posts[i].category.id == 3 %>
+                                        <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Freelance+Services",class:"card-img-top",style:'back'), post_path(@user_posts[i])) %>
+                                        <% end %>                                
+                                <% end %>
+                                    <!-- Card content -->
+                                    <div class="card-body card-body-cascade text-left">
+                                        <!-- Title -->
+                                        <h3 class="main-color"><strong><%= link_to @user_posts[i].title, post_path(@user_posts[i])%></strong></h3>
+                                        <!-- Text -->
+                                        <p class="card-text"><%=@user_posts[i].description%></p>
+                                    </div>
+                            <hr>
                             <!-- Card footer -->
-                            <div class="card-footer text-muted text-center">
-                                <small class="g-color">Last updated:  <%= time_ago_in_words(@user_posts[i].updated_at) %></small>
+                            <div class="container row">
+                                <div class='card-footer-comments'><%= link_to "<strong class='far fa-comment g-color post-footer-text'> #{@user_posts[i].comments.size} </strong>".html_safe , post_path(@user_posts[i]) %> </div>
+                                <div class='card-footer-rates'><%= link_to "<strong class='fas fa-star g-color post-footer-text'> #{@user_posts[i].show_rating} </strong>".html_safe , post_path(@user_posts[i]) %> </div>
                             </div>
                             </div>
                             <!-- Card Wider -->
@@ -64,7 +76,7 @@
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
 					<button type="button" class="btn btn-success btn-sm">Follow</button>
-                    <%= link_to "Message", conversations_path, class: "btn btn-danger btn-sm" %>
+                    <%= link_to "Message", conversations_path(user_id: @user), class: "btn btn-danger btn-sm" %>
 
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
@@ -89,8 +101,3 @@
 
     </div>
 </div>
-
-
-<script>
-}
-</script>

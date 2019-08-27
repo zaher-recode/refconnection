@@ -2,6 +2,7 @@ Rails.application.routes.draw do
 
 
   devise_for :users, controllers: {
+    omniauth_callbacks: 'users/omniauth_callbacks',
     sessions: 'users/sessions',
     registrations: 'users/registrations'
 
@@ -11,10 +12,16 @@ Rails.application.routes.draw do
     registrations: 'organizations/registrations'
   }
 
+  # authenticated :user do
+  #   root 'home#index', as: 'authenticated_root'
+  # end
+  # devise_scope :user do
+  #   root 'devise/sessions#new'
+  # end
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.htmlp
   
   get '/organizations', to: 'homes#org', as: :org_root
-  # post '/events', to: 'events#attend', as: :attend
   get '/search' => 'users#search', :as => 'search_page'
   resources :organizations
   resources :users
@@ -30,8 +37,14 @@ Rails.application.routes.draw do
 
   resources :notifications
       # post :mark_read
-      
-  resources :events
+  post '/attendees/new/:id', to: 'events#attend', as: :attend
+  post '/attendees/del/:id', to: 'events#unattend', as: :unattend
+
+  get '/privacy_policy', to: 'homes#privacy_policy', as: :privacy_policy
+
+  resources :events do
+  end
+
   resources :jobs
   resources :comments
   resources :conversations, only: [:create,:index] do
