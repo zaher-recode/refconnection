@@ -23,9 +23,9 @@
             <h5> Date :  <%= @event.start_date%> <h5>
         <% end %>
       </div>
-    <div class="container row">
-        <div><p>Organized By: <strong class='main-color'> <%= link_to @event.organization.company_name, organization_path(@event.organization)%></strong></p></div>
-        <div class='time'><span class="g-color">• <%= time_ago_in_words(@event.updated_at)%> ago</span></div>
+    <div class="">
+        <div>Organized By: <strong class='main-color'> <%= link_to @event.organization.company_name, organization_path(@event.organization)%></strong></div>
+        <div class='time'><p class="g-color"><%= time_ago_in_words(@event.updated_at)%> ago</p></div>
     </div>
 
       
@@ -66,13 +66,18 @@
                 <% if @event.attendees.where(user: current_user).any?  %>
                 <%# CHANGE COLOR MAYBE TO GREED FOR THE BELOW BTN %>
                   <strong><%= link_to 'Attending',"/attendees/del/#{@event.id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
-                  <p><%= @event.attendees.count %> <%= (@event.attendees.count) == 1 ? 'attendee' : 'attendees'%></p>
+                  <%# <p><%= @event.attendees.count %> <%#(@event.attendees.count) == 1 ? 'attendee' : 'attendees'%>
                 <%else%>
                   <strong><%= link_to 'ATTEND',"/attendees/new/#{@event.id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
-                  <p><%= @event.attendees.count %> <%= (@event.attendees.count) == 1 ? 'attend' : 'attendees'%></p>
+                  <%# <p><%= @event.attendees.count %> <%# (@event.attendees.count) == 1 ? 'attend' : 'attendees'%>
                 <% end %>
 
         <% end %>
+        <hr> 
+                            <!-- Card footer -->
+                            <div class="container row">
+                                <div class='card-footer-comments'><%= link_to "<strong class='far fa-calendar-check g-color post-footer-text'> #{@event.attendees.size} </strong>".html_safe , event_path(@event) %> </div>
+                            </div>
     </div>  
 
   <% else %>

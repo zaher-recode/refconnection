@@ -25,7 +25,6 @@ li{
   text-decoration: none;
 }
 .card {
-  
     margin: 2% 0;
     padding: 1.3rem;
     -webkit-border-radius: 1rem;
@@ -266,10 +265,27 @@ input.btn,
   .profile-userpic {
       margin: 7%;
   }
+  .profile-userpic img {
+    -webkit-border-radius: 1rem;
+    -moz-border-radius: 1rem;
+    border-radius: 1rem;
+    object-fit: cover
+  }
   
+  // .carousel-img{
+  //   -webkit-border-radius: 1rem;
+  //   -moz-border-radius: 1rem;
+  //   border-radius: 1rem;
+  //   object-fit: cover
+  // }
   .profile-usertitle {
     text-align: center;
-    margin-top: 20px;
+  }
+
+  .profile hr{
+    margin-top: 0;
+    margin-bottom: 0;
+
   }
   
   .profile-usertitle-name {
@@ -366,22 +382,10 @@ a:hover {
 }
 
 
-.profile-card {
-  margin: 2% 0;
-  padding: 1rem;
-  border-radius: 0.7rem;
-  position: relative;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-          flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 1px solid rgba(0, 0, 0, 0.125);
-  border-radius: 2px;
+.profile{
+  margin: 20px 0;
+  padding: 0.6rem;
+  background-color:white;
 }
 
 .far {
@@ -540,4 +544,8 @@ textarea.form-control {
   text-align: center;
   padding: 0.375rem 0.75rem;
   text-decoration: none;
+}
+
+.job p {
+  margin-bottom: 0.4rem;
 }

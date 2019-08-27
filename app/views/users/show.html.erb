@@ -52,8 +52,7 @@
         <% end %>
     </div>
 <div class="col-md-3">
-<div class='profil card'>
-			<div class="profile-sidebar">
+<div class='profile card'>
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
                     <% if !@user.image.attached? %>
@@ -65,17 +64,13 @@
 				<!-- END SIDEBAR USERPIC -->
 				<!-- SIDEBAR USER TITLE -->
 				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
-						<%= @user.username.capitalize %> 
-					</div>
-					<%# <div class="profile-usertitle-job">
-						Developer
-					</div> %>
+					<h3><strong><%= @user.username.capitalize  %></strong></h3>
+                    <hr>
 				</div>
 				<!-- END SIDEBAR USER TITLE -->
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
-					<button type="button" class="btn btn-success btn-sm">Follow</button>
+					<%# <button type="button" class="btn btn-success btn-sm">Follow</button> %>
                     <%= link_to "Message", conversations_path(user_id: @user), class: "btn btn-danger btn-sm" %>
 
 				</div>
@@ -92,7 +87,6 @@
 					</ul>
 				</div>
 				<!-- END MENU -->
-			</div>
 		</div>
 		</div>
 

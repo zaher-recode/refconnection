@@ -4,28 +4,36 @@
 <%# Review Book %>
     <div class="col-md-9">
       
-    </div>
+    </div> 
 
         <div class="col-md-3">
         <div class='profile card'>
-			<div class="profile-sidebar">
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
-				 <% if !@organization.image.attached? %>
-                    <%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100px;'%>
-                    <% else %>
-                    <%= image_tag @organization.image, class:'avatar text-center',style:'width:100%;'%>
+                    <% if @organization == current_organization %>
+						<% if !@organization.image.attached? %>
+							<%= link_to (image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100%;'), edit_organization_registration_url %>
+						<% else %>
+							<%= link_to (image_tag @organization.image, class:'avatar text-center',style:'width:100%;'), edit_organization_registration_url %>
+                    	<% end %>
+					<% else %>
+						<% if !@organization.image.attached? %>
+							<%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100%;' %>
+						<% else %>
+							<%= image_tag @organization.image, class:'avatar text-center',style:'width:100%;' %>
+                    	<% end %>
                     <% end %>
 				</div>
 				<!-- END SIDEBAR organizationPIC -->
 				<!-- SIDEBAR organization TITLE -->
 				<div class="profile-usertitle">
-					<div class="profile-usertitle-name">
-						<%= @organization.company_name.capitalize %> 
-					</div>
+						<h3><strong><%= @organization.company_name.capitalize %></strong></h3>
+						<p class='g-color'><%= @organization.description %></p>
+						<%# <p class='g-color'><%= @organization.description %></p> %>
 					<%# <div class="profile-usertitle-job">
 						Developer
 					</div> %>
+					<hr>
 				</div>
 				<!-- END SIDEBAR organization TITLE -->
 				<!-- SIDEBAR BUTTONS -->
@@ -36,15 +44,12 @@
 				</div>
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
+				<% if organization_signed_in? %>
 				<div class="profile-usermenu">
-					<ul class="nav">
-						<li>
-							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Settings".html_safe, edit_organization_registration_path(@organization)%>
-						</li>
-					</ul>
+							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Settings".html_safe, edit_organization_registration_path(@organization)%>s
 				</div>
-				<!-- END MENU -->
-			</div>
+				<% end %>
+			<!-- END MENU --> 
 		</div>
 		</div>
 

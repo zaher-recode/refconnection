@@ -6,7 +6,6 @@
 </div>
 
 <div class='container col-md-6'>
-<strong><h2 class=" header-primary mt-4">Jobs</h2></strong>
     <% if organization_signed_in? %>
         <div class='card'>
             <%= simple_form_for @job,:url => url_for(:action => 'create', :controller => 'jobs'),:method => 'post' do |f| %>
@@ -31,6 +30,7 @@
 
 
 <% if @jobs.empty? %>
+    <strong><h2 class=" header-primary mt-4">Jobs</h2></strong>
     <p> There are not jobs yet,</p>
 <%else%>
             <div id="cards">
@@ -48,14 +48,17 @@
                                     </div>
                                 <% end %>
                                     <!-- Card content -->
-                                    <div class="card-body card-body-cascade text-left">
+                                    <div class="card-body card-body-cascade text-left job">
                                         <!-- Title -->
-                                        <h3 class="main-color"><strong><%= link_to @jobs[i].title, post_path(@jobs[i])%></strong></h3>
+                                        <h5 class=""><strong>Title: <%= link_to @jobs[i].title, post_path(@jobs[i])%></strong></h5>
                                         <!-- Text -->
-                                        <p class="card-text"><%=@jobs[i].description%></p>
+                                        <p class="card-text">Description: <%=@jobs[i].description%></p>
+                                        <p class="card-text">Position: <%=@jobs[i].position%></p>
+                                        <p class="card-text">Address: <%=@jobs[i].address%></p>
+                                        <p class="card-text">Salary: <%=@jobs[i].salary%></p>
                                     </div>
-                            <hr>
-                            <div class=''><button type="button" class="attend-btn"><strong>APPLY</strong></button></div>
+                            <%# <hr> %>
+                            <%# <div class=''><button type="button" class="attend-btn"><strong>APPLY</strong></button></div> %>
 
                             <!-- Card footer -->
                             <%# <div class="container row"> %>
@@ -67,7 +70,7 @@
                     <% end %>
                             
             </div>
-                </div>
+        </div>
 <% end %>
 
    
@@ -78,4 +81,5 @@
         <%= render 'posts/right-col'%>    
     </div>
     </div>
+</div>
 </div>

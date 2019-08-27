@@ -84,7 +84,7 @@ class EventsController < ApplicationController
 
     def destroy
         @event = Event.find(params[:id])
-        unless verify_user
+        if current_organization == @event.organization
         @event.destroy
         redirect_to action: "index"
         end
