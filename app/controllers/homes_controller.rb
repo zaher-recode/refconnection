@@ -3,4 +3,5 @@ class HomesController < ApplicationController
     end
     def org
     end
+  
 end

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :experiences
+  resources :userskills
   # resources :posts do
   #   resources :reviews
     # resources :comments
@@ -38,6 +39,8 @@ Rails.application.routes.draw do
       # post :mark_read
   post '/attendees/new/:id', to: 'events#attend', as: :attend
   post '/attendees/del/:id', to: 'events#unattend', as: :unattend
+
+  get '/privacy_policy', to: 'homes#privacy_policy', as: :privacy_policy
 
   resources :events do
   end

@@ -38,8 +38,11 @@
     <h5>Will you be volunteering for good? </h5>
     <%= f.input :volunteer,
                 input_html: { autocomplete: "volunteer" }%>
+    <h5>Are you a member of the displaced community? </h5>
+    <%= f.input :refugee,
+                input_html: { autocomplete: "refugee" }, label: "Yes"%>
   </div>
-
+  <p><%= link_to "By registering an account, you accept our <u>Privacy Policy<u>".html_safe, privacy_policy_path %></p>
   <div class="form-actions text-center">
     <%= f.button :submit, "Sign up" %>
   </div>
