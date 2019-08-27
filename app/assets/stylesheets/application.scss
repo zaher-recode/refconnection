@@ -21,8 +21,9 @@ h4, .h4 {
 h5, .h5 {
   font-size: 1rem;
 }
-
-
+li{
+  text-decoration: none;
+}
 .card {
   
     margin: 2% 0;
@@ -44,10 +45,17 @@ border-radius: 1rem;
 }
 
 .nav-box {
-  border-radius: 0.7rem;
-  border: 2px solid #ffff;
-  color: white;
+  border-radius: 0.7rem !important;
+  border: 2px solid #ffff !important;
+  color: white !important;
 }
+
+.nav-box:hover {
+  border-radius: 0.7rem !important;
+  border: 2px solid #2873b6 !important;
+  color: #2873b6 !important;
+}
+
 .navbar li {
     // margin: 0 10px;
     display: block;
@@ -91,7 +99,13 @@ li.dropdown:hover > .dropdown-menu {
     display: block;
     // right: 0;
 }
-
+.dropdown-menu li{
+  border: none !important;
+}
+.dropdown-menu li:hover{
+  border: 1.5px solid #2873b6;
+  color: #2873b6;
+}
 
 .main-box {
     background-color: #2873b6;
@@ -374,8 +388,14 @@ a:hover {
   font-family: 'Font Awesome 5 Free';
   font-weight: 400;
   font-size: 1.3rem;
-  color: white;
 }
+.nav-right li .far{
+  color: white;  
+}
+.nav-right li .far:hover{
+  color: #2873b6;  
+}
+
 .fa,
 .fas {
   font-family: 'Font Awesome 5 Free';
@@ -426,8 +446,9 @@ padding: 1rem 2rem;
 
 .message-sent {
   position: relative;
-  background-color: #D9EDF7;
-  border-color: #BCE8F1;
+  color: white;
+  background-color: #2873b6;
+  border-radius: 0.7rem;
   margin: 5px 20px;
   padding: 10px;
   float: right;
@@ -435,8 +456,9 @@ padding: 1rem 2rem;
 
 
 .message-received {
-  background-color: #F1F0F0;
-  border-color: #EEEEEE;
+  position: relative;
+  background-color: #e7e7e7;
+  border-radius: 0.7rem;
   margin: 5px 20px;
   padding: 10px;
   float: left;
@@ -477,7 +499,7 @@ padding: 1rem 2rem;
 }
 
 .col-md-3 {
-	position: float;
+	// position: float;
 	
 	/* Position the items */
 	// &:nth-child(2) { top: 25%; }
@@ -502,4 +524,20 @@ button {
 .default-btn {
   background: none;
   border: none;
+}
+
+// CHAT
+textarea.form-control {
+  height: auto;border: 1px solid #2873b6;
+  border-radius: 0.7rem;
+}
+
+.send-btn {
+  color: white;
+  background-color: #2873b6;
+  border-radius: 0.7rem;
+  margin: auto;
+  text-align: center;
+  padding: 0.375rem 0.75rem;
+  text-decoration: none;
 }

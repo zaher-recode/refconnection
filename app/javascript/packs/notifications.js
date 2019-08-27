@@ -28,20 +28,7 @@ var setup= function(){
 }
 
 
-x = document.querySelector("[data-behavior = 'notifications']");
-x.addEventListener("click",function(e){
-  var y = e.target.dataset.id
-  if (y){
-    $.ajax({
-           method: "POST",
-           url: `/notifications/read/${y}`,
-           datatype: "JSON",
-          success: function () {
-           }
-         });
-  }
 
-});
  
 
 // $("[data-behavior='note']").click(function(e){
