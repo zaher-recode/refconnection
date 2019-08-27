@@ -55,10 +55,18 @@
 <div class='profile card'>
 				<!-- SIDEBAR USERPIC -->
 				<div class="profile-userpic">
-                    <% if !@user.image.attached? %>
-                    <%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100%;'%>
-                    <% else %>
-                    <%= image_tag @user.image, class:'avatar text-center',style:'width:100%;'%>
+                    <% if @user == current_user %>
+						<% if !@user.image.attached? %>
+							<%= link_to (image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100%;'), edit_user_registration_url %>
+						<% else %>
+							<%= link_to (image_tag @user.image, class:'avatar text-center',style:'width:100%;'), edit_user_registration_url %>
+                    	<% end %>
+					<% else %>
+						<% if !@user.image.attached? %>
+							<%= image_tag 'avatar-placeholder.gif', class:'avatar text-center',style:'width:100%;' %>
+						<% else %>
+							<%= image_tag @user.image, class:'avatar text-center',style:'width:100%;' %>
+                    	<% end %>
                     <% end %>
 				</div>
 				<!-- END SIDEBAR USERPIC -->
@@ -72,24 +80,17 @@
 				<div class="profile-userbuttons">
 					<%# <button type="button" class="btn btn-success btn-sm">Follow</button> %>
                     <%= link_to "Message", conversations_path(user_id: @user), class: "attend-btn" %>
-
+                    <% if current_user && current_user == @user %>
+                    <br>
+                    <%= link_to "<i class='glyphicon glyphicon-user'></i>Add Skills".html_safe, new_userskill_path(@user), class: "attend-btn"%>
+                    <% end %>
 				</div>
                 
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
-                <% if current_user && current_user == @user %>
-				<div class="profile-usermenu">
-					<ul class="nav">
-						<li>
-							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Settings".html_safe, edit_user_registration_path(@user)%>
-                            <br>
-                            <%= link_to "<i class='glyphicon glyphicon-user'></i>Add Skills".html_safe, new_userskill_path(@user)%>
-
-						</li>
-					</ul>
-				</div>
-                <% end %>
-				<!-- END MENU -->
+                
+				
+				<!-- END M ENU -->
 		</div>
 		</div>
 
