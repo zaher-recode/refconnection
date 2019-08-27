@@ -33,7 +33,6 @@
 <% if @posts.empty? %>
     <p> There are not posts yet,</p>
 <%else%>
-            <div id="cards">
                     <% (@posts.length).times do |i| %>
                         <!-- Card Wider -->
                             <div class="card card-cascade wider">
@@ -43,7 +42,6 @@
                             </div>
                                 <% if @posts[i].images.attached? %>
                                         <!-- Card image -->
-                                        <%# <div class="view view-cascade overlay"> %>
                                         <div class="card-image-box" style=''>
                                             <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top",style:'back'), post_path(@posts[i])) %>
                                         </div>
@@ -73,13 +71,14 @@
                             <!-- Card Wider -->
                     <% end %>
                             
-            </div>
-                </div>
+          
 <% end %>
+
+</div>
+
 <div class='container col-md-3 mt-2' style='padding-left: 0;'>
     <div class='right-col'>
         <%= render 'posts/right-col'%>    
     </div>
 </div>
 </div>
-

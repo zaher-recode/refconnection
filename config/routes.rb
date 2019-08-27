@@ -39,6 +39,8 @@ Rails.application.routes.draw do
   post '/attendees/new/:id', to: 'events#attend', as: :attend
   post '/attendees/del/:id', to: 'events#unattend', as: :unattend
 
+  get '/privacy_policy', to: 'homes#privacy_policy', as: :privacy_policy
+
   resources :events do
   end
 
