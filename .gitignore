@@ -36,5 +36,8 @@ yarn-debug.log*
 
 .DS_Store
 
+/config/credentials/production.key
+
+/config/credentials/development.key
 # Ignore application configuration
 /config/application.yml

@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   resources :users
   resources :posts
   resources :experiences
+  resources :userskills
   # resources :posts do
   #   resources :reviews
     # resources :comments
