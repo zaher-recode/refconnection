@@ -12,6 +12,26 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.mailgun_settings = {
+  #   api_key: Rails.application.credentials.mailgun_api,
+  #   domain: 'sandboxa1aa5184662d47dd942ce2242676770d.mailgun.org'
+  # }
+  # byebug
+  config.action_mailer.default_url_options = { host: 'localhost:3000'}
+
+  config.action_mailer.smtp_settings = {
+    address:              'smtp.gmail.com',
+    port:                 587,
+    domain:               'refconnection.gmail.com',
+    user_name:            'refconnection@gmail.com',
+    password:             'Sabro7-cutdef-qufriw',
+    authentication:       :plain,
+    enable_starttls_auto: true
+  }
+
+
   # Enable/disable caching. By default caching is disabled.
   # Run rails dev:cache to toggle caching.
   if Rails.root.join('tmp', 'caching-dev.txt').exist?

@@ -73,6 +73,9 @@
 					<ul class="nav">
 						<li>
 							<%= link_to "<i class='glyphicon glyphicon-user'></i>Account Settings".html_safe, edit_user_registration_path(@user)%>
+                            <br>
+                            <%= link_to "<i class='glyphicon glyphicon-user'></i>Add Skills".html_safe, new_userskill_path(@user)%>
+
 						</li>
 					</ul>
 				</div>

@@ -25,6 +25,7 @@ class UsersController < ApplicationController
     end
 
     def create
+
     end
 
    
@@ -42,6 +43,8 @@ class UsersController < ApplicationController
     end
     def destroy
     end
+
+
 
 #    private
 #    def user_params

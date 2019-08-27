@@ -13,9 +13,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+    super
+    # respond_to do |format|
+      if @user.save
+        # Tell the UserMailer to send a welcome email after save
+        UserMailer.welcome_email(@user).deliver_now
+ 
+        # format.html { redirect_to(@user, notice: 'User was successfully created.') }
+        # format.json { render json: @user, status: :created, location: @user
+        # format.html { render action: 'new' }
+        # format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
+  end
 
   # GET /resource/edit
   # def edit
@@ -25,6 +35,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # PUT /resource
   def update
     super
+    
     @user.image = params[:user][:image]
     @user.save
   end
@@ -47,12 +58,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :dob, :phone,:address, :volunteer])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :dob, :phone,:address, :volunteer, :refugee])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :dob, :phone,:address, :volunteer])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:username, :dob, :phone,:address, :volunteer, :refugee])
   end
 
   # The path used after sign up.

@@ -1,3 +1,4 @@
 class Skill < ApplicationRecord
-    belongs_to :user
+    has_many :userskills, dependent: :destroy
+    has_many :users, through: :userskills, dependent: :destroy
 end

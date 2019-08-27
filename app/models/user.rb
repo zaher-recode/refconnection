@@ -4,8 +4,9 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :attendees
   has_many :events, :through => :attendees
+  has_many :userskills, dependent: :destroy
+  has_many :skills, through: :userskills, dependent: :destroy
 
-  has_many :skills
   has_many :experiences
   has_many :industries, :through => :experiences
 
@@ -30,6 +31,8 @@ class User < ApplicationRecord
         username: username
       }
     end
+
+
 
 
 end

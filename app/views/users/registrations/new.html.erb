@@ -38,6 +38,9 @@
     <h5>Will you be volunteering for good? </h5>
     <%= f.input :volunteer,
                 input_html: { autocomplete: "volunteer" }%>
+    <h5>Are you a member of the displaced community? </h5>
+    <%= f.input :refugee,
+                input_html: { autocomplete: "refugee" }, label: "Yes"%>
   </div>
 
   <div class="form-actions text-center">
