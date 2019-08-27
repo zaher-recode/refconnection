@@ -2,7 +2,7 @@ require_relative 'boot'
 
 require 'rails/all'
 
-# config.active_job.queue_adapter = :sidekiq
+config.active_job.queue_adapter = :sidekiq
 
 
 # Require the gems listed in Gemfile, including any gems
