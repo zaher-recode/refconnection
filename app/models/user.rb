@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :messages, dependent: :destroy
   has_many :conversations, foreign_key: :sender_id
   has_many :notifications, foreign_key: :recipient_id
+  
   has_one_attached :image
 
   # Include default devise modules. Others available are:

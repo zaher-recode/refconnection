@@ -489,9 +489,9 @@ padding: 1rem 2rem;
   display: block;
   margin: 0.3rem 0;
   // display: flex;
-  padding: 12px 19px;
+  padding: 0px 20px;
   border-radius: 0.7rem;
-  border: 2px solid #2873b6;
+  // border: 2px solid #2873b6;
   color: #2873b6;
 }
 .org-item li:hover {
@@ -507,13 +507,13 @@ padding: 1rem 2rem;
 	// &:nth-child(4) { top: 75%; }
 }
 .right-col{
-  position: -webkit-sticky;
-	position: sticky;
+  // position: -webkit-sticky;
+	// position: sticky;
 	top: 1rem;
 }
 .left-col{
-  position: -webkit-sticky;
-	position: sticky;
+  // position: -webkit-sticky;
+	// position: sticky;
 	top: 1rem;
 }
 

@@ -17,6 +17,10 @@
                 required: true,
                 autofocus: true,
                 input_html: { autocomplete: "company_name" }%>
+    <%= f.input :description,
+                required: true,
+                autofocus: true,
+                input_html: { autocomplete: "Description" }%>
     <h5>Will you be organizing events for the community?</h5>
     <%= f.input :organizer,
                 required: false,

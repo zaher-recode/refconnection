@@ -3,6 +3,7 @@
 <div class="card ">
   <h4 class="">Categories<hr></h4>
   <div class='category-item'>
+    <% @categories = Category.all.order("created_at DESC") %>
     <% @categories.each do |category| %>
       <strong><%= link_to "<li>#{category.name}</li>".html_safe, posts_path(category.name) %></strong>
     <% end %>
@@ -19,7 +20,7 @@
       <% @orgs[0..3].each do |org| %>
         <li>
           <strong class='main-color'><%= link_to org.company_name, organization_path(org) %></strong>
-          <p class='g-color'><%= org.address %></p>
+          <p class='g-color'><%= org.description %></p>
         </li>
         <hr>
       <% end %>

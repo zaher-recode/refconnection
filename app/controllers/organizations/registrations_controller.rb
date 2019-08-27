@@ -48,12 +48,12 @@ class Organizations::RegistrationsController < Devise::RegistrationsController
   # end
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:company_name, :address, :phone, :contact_person_name, :company, :organizer])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:image, :company_name,:description , :address, :phone, :contact_person_name, :company, :organizer])
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
-    devise_parameter_sanitizer.permit(:account_update, keys: [:company_name, :address, :phone, :contact_person_name, :company, :organizer])
+    devise_parameter_sanitizer.permit(:account_update, keys: [:image, :company_name, :description, :address, :phone, :contact_person_name, :company, :organizer])
   end
 
   # The path used after sign up.

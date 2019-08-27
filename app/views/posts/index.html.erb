@@ -20,8 +20,8 @@
         <%= f.input :description, label: false, placeholder:'Description' %>
         <%= f.association :category, prompt: "Select Category", input_html: { class: "form-control center" }, label: false%>
         <%= f.file_field :images, multiple: true%>
-    </div>form-actions 
-    <div class="text-right">
+    </div>
+    <div class="form-actions text-right">
         <%= f.button :submit %>
     </div>
     <% end %>
@@ -42,21 +42,19 @@
                                 <div class='time'><span class="g-color">• <%= time_ago_in_words(@posts[i].updated_at)%> ago</span></div>
                             </div>
                                 <% if @posts[i].images.attached? %>
-                                    <!-- Card image -->
-                                    <%# <div class="view view-cascade overlay"> %>
-                                    <div class="card-image-box" style=''>
-                                        <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top",style:'back'), post_path(@posts[i])) %>
-                                    </div>
+                                        <!-- Card image -->
+                                        <%# <div class="view view-cascade overlay"> %>
+                                        <div class="card-image-box" style=''>
+                                            <%= link_to(image_tag(url_for(@posts[i].images.first),class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+                                        </div>
                                  <% else %>
-                                    <%if @posts[i].category.id == 1 %>
-                                        <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Maintenance+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
-                                    <%elsif @posts[i].category.id == 2 %>
-                                        <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Teaching+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
-                                    <%elsif @posts[i].category.id == 3 %>
-                                       <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Freelance+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
-  
-
-                                    <% end %>                                
+                                        <%if @posts[i].category.id == 1 %>
+                                            <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Maintenance+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+                                        <%elsif @posts[i].category.id == 2 %>
+                                            <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Teaching+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+                                        <%elsif @posts[i].category.id == 3 %>
+                                        <%= link_to(image_tag("https://dummyimage.com/600x300/666666/ffffff.jpg&text=Freelance+Services",class:"card-img-top",style:'back'), post_path(@posts[i])) %>
+                                        <% end %>                                
                                 <% end %>
                                     <!-- Card content -->
                                     <div class="card-body card-body-cascade text-left">

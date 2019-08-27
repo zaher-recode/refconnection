@@ -1,9 +1,12 @@
 <div class='row main-col'>
 <div class='container col-sm-3'>
+    <div class=''>
+        <%= render 'posts/left-col'%>    
+    </div>
 </div>
 
 <div class='container col-md-6'>
-<h1 class="text-center header-primary mt-5">Events</h1>
+<strong><h2 class=" header-primary mt-4">Events</h2></strong>
 
 <% if organization_signed_in? %>
     <div class='card'>
@@ -50,7 +53,7 @@
                              <!-- Card content -->
                             <div class="card-body card-body-cascade text-left">
                                 <!-- Title -->
-                                <h4 class="card-title"><strong><%=@events[i].title%></strong></h4>
+                                <h4 class="card-title"><strong><%= link_to @events[i].title, event_path(@events[i])%></strong></h4>
                                 <!-- Text -->
                                 <p class="card-text"><%=@events[i].description%></p>
                             </div>
@@ -72,5 +75,8 @@
 
 </div>
 <div class='container col-sm-3'>
+<div class='right-col'>
+        <%= render 'posts/right-col'%>    
+    </div>
 </div>
 </div>
