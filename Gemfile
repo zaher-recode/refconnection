@@ -14,6 +14,7 @@ gem 'image_processing'
 gem 'mini_magick'
 
 gem 'omniauth-facebook'
+gem 'koala'
 
 # Development ENV Variables
 gem 'figaro'
