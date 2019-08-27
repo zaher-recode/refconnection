@@ -63,8 +63,15 @@
         <%# CONTENT %>
         <div class='show-content'><p class='card-text'><%=@event.description%></p></div>
         <% if current_user  %>
-          <strong><%= button_to 'ATTEND',{:controller => "events", :action => "attend", :user_id => current_user.id , :event_id => @event.id } ,class:'attend-btn' , :method=>:post%></strong>
-        <%# <div class=''><button type="button" class="attend-btn"><strong>ATTEND</strong></button></div> %>
+                <% if @event.attendees.where(user: current_user).any?  %>
+                <%# CHANGE COLOR MAYBE TO GREED FOR THE BELOW BTN %>
+                  <strong><%= link_to 'Attending',"/attendees/del/#{@event.id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
+                  <p><%= @event.attendees.count %> <%= (@event.attendees.count) == 1 ? 'attendee' : 'attendees'%></p>
+                <%else%>
+                  <strong><%= link_to 'ATTEND',"/attendees/new/#{@event.id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
+                  <p><%= @event.attendees.count %> <%= (@event.attendees.count) == 1 ? 'attend' : 'attendees'%></p>
+                <% end %>
+
         <% end %>
     </div>  
 

@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
     belongs_to :organization
-    has_many :attendees
+    has_many :attendees, dependent: :destroy
     has_many :users, through: :attendees
     has_many :comments
 
@@ -16,4 +16,5 @@ class Event < ApplicationRecord
         address: address
       }
     end
+
 end
