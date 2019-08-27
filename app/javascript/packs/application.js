@@ -21,7 +21,8 @@ require("jquery")
 import 'bootstrap';
 import "./all";
 import "./notifications";
-
+window.jQuery = $;
+window.$ = $;
 
 (function() {
     $(document).on('click', '.toggle-window', function(e) {

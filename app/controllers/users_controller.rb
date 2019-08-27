@@ -4,7 +4,7 @@ class UsersController < ApplicationController
     def search  
         if params[:search].blank?  
           redirect_to(root_path, alert: "Empty field!") and return  
-        elsif Post.all.empty? 
+        elsif Post.all.empty? && Event.all.empty?  && Job.all.empty?  && Organization.all.empty?  && User.all.empty? 
           redirect_to(root_path, alert: "Empty DB!") and return  
         else  
             search = params[:search].present? ? params[:search] : nil

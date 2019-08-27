@@ -19,9 +19,11 @@
 
   <div class="form-actions text-center">
     <%= f.button :submit, "Log in" %>
-    <br>
+    <hr>
+    <div class="text-center social-btn">
+            <a href="/users/auth/facebook" class="btn-block attend-btn"><i class="fa fa-facebook"></i> Sign in with <b>Facebook</b></a>
+    </div>
 <%= render "users/shared/links" %>
-
   </div>
 
 <% end %>

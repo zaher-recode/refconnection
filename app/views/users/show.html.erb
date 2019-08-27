@@ -71,11 +71,13 @@
 				<!-- SIDEBAR BUTTONS -->
 				<div class="profile-userbuttons">
 					<%# <button type="button" class="btn btn-success btn-sm">Follow</button> %>
-                    <%= link_to "Message", conversations_path(user_id: @user), class: "btn btn-danger btn-sm" %>
+                    <%= link_to "Message", conversations_path(user_id: @user), class: "attend-btn" %>
 
 				</div>
+                
 				<!-- END SIDEBAR BUTTONS -->
 				<!-- SIDEBAR MENU -->
+                <% if current_user && current_user == @user %>
 				<div class="profile-usermenu">
 					<ul class="nav">
 						<li>
@@ -86,6 +88,7 @@
 						</li>
 					</ul>
 				</div>
+                <% end %>
 				<!-- END MENU -->
 		</div>
 		</div>

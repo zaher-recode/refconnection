@@ -3,8 +3,109 @@
 
 <%# Review Book %>
     <div class="col-md-9">
-      
-    </div> 
+	<% if @events.empty? %>
+<strong><h2 class=" header-primary mt-4">Events</h2></strong>
+
+    <p> There are not events yet,</p>
+<%else%>
+<div class='card'>
+<strong><h3 class=" header-primary mt-4">Events</h3></strong>
+            <div id="cards">
+                    <% @events.each do |event| %>
+                        <!-- Card Wider -->
+                            <div class="card card-cascade wider">
+                            <div class="container row">
+                                <div><h4><strong><%= link_to event.organization.company_name, organization_path(event.organization), class:'main-color'%></strong></h4></div>
+                                <div class='time'><span class="g-color">• <%= time_ago_in_words(event.updated_at)%> ago</span></div>
+                            </div>
+                            <!-- IMAGES -->
+                            <% if event.images.attached? %>
+                                <!-- Card image -->
+                                <div class="card-img-box">
+                                    <%= link_to(image_tag(url_for(event.images.first),class:"card-img-top"), event_path(event)) %>
+                                </div>
+                            <% end %>
+                             <!-- Card content -->
+                            <div class="card-body card-body-cascade text-left">
+                                <!-- Title -->
+                                <h4 class="card-title"><strong><%= link_to event.title, event_path(event)%></strong></h4>
+                                <!-- Text -->
+                                <p class="card-text"><%=event.description%></p>
+                            </div>
+                            <% if current_user  %>
+                                <% if event.attendees.where(user: current_user).any?  %>
+                                <%# CHANGE COLOR MAYBE TO GREED FOR THE BELOW BTN %>
+                                <strong><%= link_to 'Attending',"/attendees/del/#{event.id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
+                                
+                                <%else%>
+                                <strong><%= link_to 'ATTEND',"/attendees/new/#{event.id}", :method=>:post, class:'attend-btn', remote: true, data: { turbolinks: "false" }  %></strong>
+                   
+                                <% end %>
+
+                            <% end  %>
+                            <hr> 
+                            <!-- Card footer -->
+                            <div class="container row">
+                                <div class='card-footer-comments'><%= link_to "<strong class='far fa-calendar-check g-color post-footer-text'> #{event.attendees.size} </strong>".html_safe , event_path(event) %> </div>
+                            </div>
+                            </div>
+                            <!-- Card Wider -->
+                    <% end %>
+                            
+                        </div>
+                </div>
+<% end %>
+    
+<% if @jobs.empty? %>
+    <strong><h2 class=" header-primary mt-4">Jobs</h2></strong>
+    <p> There are not jobs yet,</p>
+<%else%>
+<div class='card'>
+<strong><h3 class=" header-primary mt-4">Jobs</h3></strong>
+            <div id="cards">
+                    <% @jobs.each do |job| %>
+                        <!-- Card Wider -->
+                            <div class="card card-cascade wider">
+                            <div class="container row">
+                                <div><h4><strong class='main-color'><%= link_to job.organization.company_name, user_path(job.organization)%></strong></h4></div>
+                                <div class='time'><span class="g-color">• <%= time_ago_in_words(job.updated_at)%> ago</span></div>
+                            </div>
+                                <% if job.images.attached? %>
+                                    <!-- Card image -->
+                                    <div class="view view-cascade overlay">
+                                        <%= link_to(image_tag(url_for(job.images.first),class:"card-img-top",style:'back'), post_path(job)) %>
+                                    </div>
+                                <% end %>
+                                    <!-- Card content -->
+                                    <div class="card-body card-body-cascade text-left job">
+                                        <!-- Title -->
+                                        <h5 class=""><strong>Title: <%= link_to job.title, post_path(job)%></strong></h5>
+                                        <!-- Text -->
+                                        <p class="card-text">Description: <%=job.description%></p>
+                                        <p class="card-text">Position: <%=job.position%></p>
+                                        <p class="card-text">Address: <%=job.address%></p>
+                                        <p class="card-text">Salary: <%=job.salary%></p>
+                                    </div>
+                            <%# <hr> %>
+                            <%# <div class=''><button type="button" class="attend-btn"><strong>APPLY</strong></button></div> %>
+
+                            <!-- Card footer -->
+                            <%# <div class="container row"> %>
+                                <%# <div class='card-footer-comments'><%= link_to "<strong class='far fa-comment g-color post-footer-text'> #{job.comments.size} </strong>".html_safe , post_path(job) %> 
+                                <%# <div class='card-footer-rates'><%= link_to "<strong class='fas fa-star g-color post-footer-text'> #{job.show_rating} </strong>".html_safe , post_path(job) %> 
+                            <%# </div> %>
+                            <%# </div> %>
+                            <!-- Card Wider -->
+                    <% end %>
+                            
+            </div>
+        </div>
+        </div>
+		 </div> 
+<% end %>
+                            
+
+   
 
         <div class="col-md-3">
         <div class='profile card'>
@@ -29,7 +130,12 @@
 				<div class="profile-usertitle">
 						<h3><strong><%= @organization.company_name.capitalize %></strong></h3>
 						<p class='g-color'><%= @organization.description %></p>
-						<%# <p class='g-color'><%= @organization.description %></p> %>
+							<div class='container'>
+								<div class='text-left g-color'><i class="text-left g-color fas fa-phone-alt"></i>  <%= @organization.phone %></div>
+								<div class='text-left g-color'><i class='text-left g-color fas fa-location-arrow'></i>  <%= @organization.address %></div>
+							</div>
+						
+						  
 					<%# <div class="profile-usertitle-job">
 						Developer
 					</div> %>

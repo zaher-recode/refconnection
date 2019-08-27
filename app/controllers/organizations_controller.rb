@@ -9,6 +9,9 @@ class OrganizationsController < ActionController::Base
    
     def show
         @organization = Organization.find_by(id: params[:id])
+        @events = @organization.events
+        @jobs = @organization.jobs
+        # byebug
     end
 
     # def edit
