@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2019_08_26_223639) do
     t.integer "post_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "event_id"
   end
 
   create_table "conversations", force: :cascade do |t|
