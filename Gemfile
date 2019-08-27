@@ -14,7 +14,6 @@ gem 'image_processing'
 gem 'mini_magick'
 
 gem 'omniauth-facebook'
-gem 'koala'
 
 # Development ENV Variables
 gem 'figaro'
@@ -70,4 +69,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'searchkick'
 
-# gem 'omniauth-facebook'
+gem 'capistrano'
+gem 'capistrano-rails'
+gem 'capistrano-passenger'
+gem 'capistrano-rbenv'
+gem 'capistrano-rails-db'
+
+gem 'honeybadger', '~> 4.0'
+
+gem 'capistrano-sidekiq'
