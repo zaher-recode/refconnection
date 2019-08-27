@@ -44,13 +44,13 @@
                                 <% if @jobs[i].images.attached? %>
                                     <!-- Card image -->
                                     <div class="view view-cascade overlay">
-                                        <%= link_to(image_tag(url_for(@jobs[i].images.first),class:"card-img-top",style:'back'), post_path(@jobs[i])) %>
+                                        <%= link_to(image_tag(url_for(@jobs[i].images.first),class:"card-img-top",style:'back'), job_path(@jobs[i])) %>
                                     </div>
                                 <% end %>
                                     <!-- Card content -->
                                     <div class="card-body card-body-cascade text-left job">
                                         <!-- Title -->
-                                        <h5 class=""><strong>Title: <%= link_to @jobs[i].title, post_path(@jobs[i])%></strong></h5>
+                                        <h5 class=""><strong>Title: <%= link_to @jobs[i].title, job_path(@jobs[i])%></strong></h5>
                                         <!-- Text -->
                                         <p class="card-text">Description: <%=@jobs[i].description%></p>
                                         <p class="card-text">Position: <%=@jobs[i].position%></p>
@@ -62,8 +62,8 @@
 
                             <!-- Card footer -->
                             <%# <div class="container row"> %>
-                                <%# <div class='card-footer-comments'><%= link_to "<strong class='far fa-comment g-color post-footer-text'> #{@jobs[i].comments.size} </strong>".html_safe , post_path(@jobs[i]) %> 
-                                <%# <div class='card-footer-rates'><%= link_to "<strong class='fas fa-star g-color post-footer-text'> #{@jobs[i].show_rating} </strong>".html_safe , post_path(@jobs[i]) %> 
+                                <%# <div class='card-footer-comments'><%= link_to "<strong class='far fa-comment g-color post-footer-text'> #{@jobs[i].comments.size} </strong>".html_safe , job_path(@jobs[i]) %> 
+                                <%# <div class='card-footer-rates'><%= link_to "<strong class='fas fa-star g-color post-footer-text'> #{@jobs[i].show_rating} </strong>".html_safe , job_path(@jobs[i]) %> 
                             <%# </div> %>
                             <%# </div> %>
                             <!-- Card Wider -->
