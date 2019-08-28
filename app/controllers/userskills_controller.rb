@@ -10,7 +10,6 @@ class UserskillsController < ApplicationController
 
     def create
             @userskills = Userskill.new(skill_params.merge(user_id: current_user.id))
-            
         # @userskills = Userskill.new(skill_params.merge(user_id: current_user.id))            
         
         if @userskills.save
