@@ -1,3 +1,7 @@
+<%# NEW EVENT-FORM %>
+<div class="container text-center mt-5">
+  <h4 class="main-color">Add  New Skill</h4>
+    <div class="container text-left sign-form">
 <%= simple_form_for @userskills, remote: true do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -11,3 +15,5 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+    </div>
+</div>

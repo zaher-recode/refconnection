@@ -11,7 +11,7 @@ class ExperiencesController < ApplicationController
     def create
         @experience = Experience.create(experience_params.merge(user_id: current_user.id))
         if @experience.save
-            redirect_to(:action => 'show', :id => @experience.id)
+            redirect_to(:controller =>'users',:action => 'show', :id => current_user.id)
         else
             render 'new'
         end
