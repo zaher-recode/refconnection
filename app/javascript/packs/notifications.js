@@ -45,6 +45,6 @@ var setup= function(){
 // })
 
 
-// setInterval(function(){new Notifications; }, 3000);
+setInterval(function(){new Notifications; }, 3000);
  
 //  new Notifications
