@@ -6,7 +6,7 @@ class Message < ApplicationRecord
   belongs_to :conversation
   has_many :users, through: :conversation
 
-  after_create_commit { MessageBroadcastJob.perform_later(self) }
+  after_create_commit { MessageBroadcastJob.perform_now(self) }
 
   private
 

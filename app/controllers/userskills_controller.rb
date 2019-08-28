@@ -9,9 +9,7 @@ class UserskillsController < ApplicationController
     end
 
     def create
-        skill_params.each do |skill_param|
-            @userskills = Userskill.new(skill_param.merge(user_id: current_user.id))
-        end
+            @userskills = Userskill.new(skill_params.merge(user_id: current_user.id))
             
         # @userskills = Userskill.new(skill_params.merge(user_id: current_user.id))            
         
@@ -55,7 +53,7 @@ class UserskillsController < ApplicationController
 
     private
     def skill_params
-        params.require(:userskill).permit(skill_ids: [])
+        params.require(:userskill).permit(:skill_id)
 
     end
 end
